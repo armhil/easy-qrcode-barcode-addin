@@ -10,8 +10,7 @@ export function GithubFooter() {
 			</div>
 			<span className="footer-notification">Easy QR Code Barcode is open source now! </span>
 			<a href="https://github.com/armhil/easy-qrcode-barcode-addin"
-			// eslint-disable-next-line
-			target="_blank">Contribute here</a>
+			target="_blank" rel="noreferrer">Contribute here</a>
 		</div>
 	);
 }
