@@ -1,0 +1,43 @@
+name: Build and publish
+on:
+  push:
+    branches: [main]
+jobs:
+
+  Build-and-upload-apps:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - run: npm ci
+      working-directory: easy-code-formatter-utils
+    - run: npm ci
+      working-directory: easy-code-formatter-function-app
+    - run: npm run build
+      working-directory: easy-code-formatter-function-app
+    - run: npm ci
+      working-directory: easy-code-formatter-taskpane-app
+    - run: npm run build
+      working-directory: easy-code-formatter-taskpane-app
+    - run: npm ci
+      working-directory: easy-code-formatter-gsuite-app
+    - run: npm run build
+      working-directory: easy-code-formatter-gsuite-app
+    - name: Upload Function App
+      uses: armhil/azure-blobs-content-uploader@1.0.4
+      with:
+        azureBlobConfiguration: ${{ secrets.AZ_BLOB_CONFIGURATION }}
+        directoriesToUpload: '[{"path": "easy-code-formatter-function-app/dist", "baseContainerPath": "easy-codify/function", "shouldRecurse": "true" }]'
+    - name: Upload Taskpane app
+      uses: armhil/azure-blobs-content-uploader@1.0.4
+      with:
+        azureBlobConfiguration: ${{ secrets.AZ_BLOB_CONFIGURATION }}
+        directoriesToUpload: '[{"path": "easy-code-formatter-taskpane-app/build", "baseContainerPath": "easy-codify/taskpane", "shouldRecurse": "true" }]'
+    - name: Upload GSuite App
+      uses: armhil/azure-blobs-content-uploader@1.0.4
+      with:
+        azureBlobConfiguration: ${{ secrets.AZ_BLOB_CONFIGURATION }}
+        directoriesToUpload: '[{"path": "easy-code-formatter-gsuite-app/build", "baseContainerPath": "easy-codify/gsuite", "shouldRecurse": "true" }]'
+    
