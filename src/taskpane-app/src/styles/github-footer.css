@@ -1,0 +1,14 @@
+.footer {
+  position: absolute;
+  width: -webkit-fill-available;
+  bottom: 0;
+  border-top:1px solid rgb(204, 204, 204);
+  padding: 10px;
+}
+.footer-icon {
+  float: left;
+  padding-right: 8px;
+}
+.footer-notification {
+  font-size: small;
+}
