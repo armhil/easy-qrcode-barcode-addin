@@ -1,4 +1,4 @@
-export const CreateHashRoute = (route: string) => { return `/#/${route}` };
+export const CreateHashRoute = (route: string) => { return `${window.location.href}#/${route}` };
 export const CreateRouterRoute = (route: string) => { return `/${route}` };
 export const Routes = {
   // QR Code
