@@ -53,7 +53,7 @@ export function BarcodeRoute() {
       <Slider className="padded-top" label="Width" onChange={setWidth} min={0.5} max={5} step={0.5} defaultValue={width} showValue snapToStep />
       <Slider className="padded-top" label="Height" onChange={setHeight} min={50} max={150} step={5} defaultValue={height} showValue snapToStep />
       <div ref={ref}>
-          <Barcode displayValue={false}
+          <Barcode displayValue={false} renderer='canvas'
             width={width} height={height} value={text}/>
       </div>
       <div className="padded-top">
