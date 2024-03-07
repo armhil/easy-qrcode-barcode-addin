@@ -1,5 +1,7 @@
 # easy-qrcode-barcode-addin
 
+[![Build and publish](https://github.com/armhil/easy-qrcode-barcode-addin/actions/workflows/main.yml/badge.svg)](https://github.com/armhil/easy-qrcode-barcode-addin/actions/workflows/main.yml)
+
 [Easy QR code and Barcode generator](https://appsource.microsoft.com/en/product/office/WA200002492?tab=Overview) is a Microsoft Word add-in (well, hopefully I can make it cross-plat some day) that allows people to generate QRs and Barcodes in Word docs. I finally got around open-sourcing this.
 
 I'd say it's safe to ignore the rating as this app had some legit outages which clashed with my holidays, but I've done my part, TypeScriptified the whole thing, re-built it using my open source stuff like [Easy-Addins-Utils](https://github.com/armhil/easy-addins-utils) and [Azure-Blobs-Uploader](https://github.com/armhil/azure-blobs-content-uploader), so we should be in a way better place.
