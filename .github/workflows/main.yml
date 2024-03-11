@@ -13,6 +13,13 @@ jobs:
         node-version: 16
     - run: npm ci
       working-directory: taskpane-app
+    - run: npm test -- --coverage
+      working-directory: taskpane-app
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v4.0.1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        slug: armhil/easy-qrcode-barcode-addin
     - run: npm run build
       working-directory: taskpane-app
     - name: Upload app
