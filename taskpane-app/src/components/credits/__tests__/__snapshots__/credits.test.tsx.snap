@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`credits rendering should match with snapshot 1`] = `
+[
+  <p>
+    This software wouldn't be possible without components below and countless hours of learning and coding.
+  </p>,
+  <ul>
+    <li>
+      <a
+        href="https://developer.microsoft.com/en-us/fluentui"
+        rel="noreferrer"
+        target="_blank"
+      >
+        Microsoft's Fluent UI
+      </a>
+    </li>
+    <li>
+      <a
+        href="https://github.com/zpao/qrcode.react"
+        rel="noreferrer"
+        target="_blank"
+      >
+        Zpao's React QR Code Generator
+      </a>
+    </li>
+    <li>
+      <a
+        href="https://github.com/kciter/react-barcode"
+        rel="noreferrer"
+        target="_blank"
+      >
+        Kciter's React Barcode Generator
+      </a>
+    </li>
+  </ul>,
+]
+`;

@@ -1,4 +1,4 @@
 export { BarcodeRoute } from './barcode';
-export { CreditsRoute } from './credits';
+export { Credits } from './credits';
 export { QrCodeRoute } from './qrcode';
 export { GithubFooter } from './footer';

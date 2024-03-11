@@ -5,37 +5,36 @@ import { LoggingUtils } from 'easy-addins-utils';
 import { GithubFooter } from '../footer';
 
 describe('footer rendering', () => {
-	it('should match with snapshot', () => {
-		const tree = renderer.create(
-			<GithubFooter />
-		).toJSON();
-		expect(tree).toMatchSnapshot();
-	});
+  it('should match with snapshot', () => {
+    const tree = renderer.create(
+      <GithubFooter />
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 
-	it('should render a link as button', () => {
-		const dom = render(
-			<GithubFooter />
-		);
+  it('should render a link as button', () => {
+    const dom = render(
+      <GithubFooter />
+    );
 
-		const githubLink = dom.queryByRole('button');
-		expect(githubLink).not.toBeUndefined();
-	});
+    const githubLink = dom.queryByRole('button');
+    expect(githubLink).not.toBeUndefined();
+  });
 
+  it('clicking link should track and open github on production', () => {
+    const dom = render(
+      <GithubFooter />
+    );
 
-	it('clicking link should track and open github on production', () => {
-		const dom = render(
-			<GithubFooter />
-		);
+    const mockTrackFn = jest.fn();
+    LoggingUtils.Trace = mockTrackFn;
+    const mockOpenFn: any = jest.fn();
+    (window as any).open = mockOpenFn;
 
-		const mockTrackFn = jest.fn();
-		LoggingUtils.Trace = mockTrackFn;
-		const mockOpenFn: any = jest.fn();
-		(window as any).open = mockOpenFn;
-
-		const githubLink = dom.queryByRole('button');
-		githubLink?.click();
-		expect(mockTrackFn).toHaveBeenCalledTimes(1);
-		expect(mockTrackFn).toHaveBeenCalledWith('qrbar-github');
-		expect(mockOpenFn).toHaveBeenCalledWith('https://github.com/armhil/easy-qrcode-barcode-addin');
-	});
+    const githubLink = dom.queryByRole('button');
+    githubLink?.click();
+    expect(mockTrackFn).toHaveBeenCalledTimes(1);
+    expect(mockTrackFn).toHaveBeenCalledWith('qrbar-github');
+    expect(mockOpenFn).toHaveBeenCalledWith('https://github.com/armhil/easy-qrcode-barcode-addin');
+  });
 })

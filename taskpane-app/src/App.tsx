@@ -23,7 +23,7 @@ export function App() {
           <Routes>
               <Route path={Constants.Routes.QRCode} element={<Components.QrCodeRoute/>}/>
               <Route path={Constants.Routes.Barcode} element={<Components.BarcodeRoute/>}/>
-              <Route path={Constants.Routes.Credits} element={<Components.CreditsRoute/>} />
+              <Route path={Constants.Routes.Credits} element={<Components.Credits/>} />
           </Routes>
         </Router>
       </div>

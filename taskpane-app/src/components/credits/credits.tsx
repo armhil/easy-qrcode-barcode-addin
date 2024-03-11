@@ -1,14 +1,14 @@
 /** credits route - acknowledging the dependencies */
 import React from 'react';
 import { LoggingUtils } from 'easy-addins-utils';
-export function CreditsRoute() {
+export function Credits() {
   // useEffect for tracing the route, should be logged only once.
   React.useEffect(() => {
     LoggingUtils.Trace('qrbar-credits');
   });
 
   return (
-    <React.Fragment>
+    <>
       <p>This software wouldn't be possible without components below and countless hours of learning and coding.</p>
       <ul>
         <li>
@@ -21,6 +21,6 @@ export function CreditsRoute() {
           <a href="https://github.com/kciter/react-barcode"
           target="_blank" rel="noreferrer">Kciter's React Barcode Generator</a></li>
       </ul>
-    </React.Fragment>
+    </>
   )
 }
