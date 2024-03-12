@@ -26,76 +26,148 @@ exports[`barcode rendering should match with snapshot 1`] = `
       />
     </span>
   </div>,
-  <div>
+  <div
+    className="ms-Slider ms-Slider-enabled ms-Slider-row ___15qz5iz_0000000 f18og1rn root-109"
+  >
     <label
-      className="fui-Label ___1yevxz2_yljzsa0 fk6fouc f19n0e5 fkhj508 f1i3iumi"
-      htmlFor="fui-r1"
+      className="ms-Label titleLabel-120"
+      htmlFor="Slider0"
     >
-      Width slider
+      Width
     </label>
-    <div>
+    <div
+      className="ms-Slider-container container-111"
+    >
       <div
-        className="fui-Slider ___151n96i_1cavycs f10pi13n fwk3njj f1sdsnyy f122n59 f1oiokrs ftqa4ok f2hkw1w f1b1k54r f4ne723 fh7aioi fqqcjud f1k55ka9 fgclinu fycbxed f16pcs8n ffht0p2 f1p0ul1q f1c901ms f1alokd7 f78i1la f1kvsw7t f8k7e5g f1bw8brt f1pmxfrl fszkfcr f57dp0y f1ap5ily f11dm2qb f136rfnd fdsq1qd f1khssms fq4eyks f1ya6x16 f1e2iu44 ftuszwa f1pffoy2 f1bmyog6 fs6b7xr f15fv2gd f1a78h9h fuok0yf f1nxs5xn fyvtabn fgfd48t f4t5rw1 f4l8x3l f671q34 fvfzmw5 faw1t00 fxdgx5 fii04fa f36hzz8 f1volkfw f1xddb6 fcdikl fhpzgm6 f1q6pm3h f18og1rn fly5x3f"
-        style={
-          {
-            "--fui-Slider--direction": "90deg",
-            "--fui-Slider--progress": "1.2096774193548387%",
-            "--fui-Slider--steps-percent": "",
-          }
-        }
+        aria-disabled={false}
+        aria-label="Width"
+        aria-valuemax={5}
+        aria-valuemin={0.5}
+        aria-valuenow={1}
+        aria-valuetext="1"
+        className="ms-Slider-slideBox ms-Slider-showValue slideBox-112"
+        data-is-focusable={true}
+        id="Slider0"
+        onKeyDown={[Function]}
+        onMouseDown={[Function]}
+        onTouchStart={[Function]}
+        role="slider"
+        tabIndex={0}
       >
-        <input
-          className="fui-Slider__input ___8p3dzw0_2fzfsa0 f1k6fduh fk73vx1 f16hsg94 f1nzqi2z fwpfdsa fuur7zz f1g0x7ka fhxju0i f1qch9an f1cnd47f f1hu3pq6 f11qmguv f19f4twv f1tyq0we f1yfdkfd fly5x3f"
-          id="fui-r1"
-          max={50}
-          min={0.4}
-          onChange={[Function]}
-          type="range"
-          value={1}
-        />
         <div
-          className="fui-Slider__rail ___1a5brpz_17vwgb3 fnivh3a fc7yr5o f1el4m67 f8yange f1aehjj5 faunodf f88nxoq fd46tj4 f1e2fz10 f10pi13n fdgv6k0 fizngqt fpvhumw f1yog68k f13sgyd8 fzhtfnv f1j7ml58 fx36ao7 fux3rle fly5x3f f1cy86ho f1heqfse fkh49vu f16tdq4e"
-        />
-        <div
-          className="fui-Slider__thumb ___14wdpg0_ohb8140 faunodf f88nxoq fd46tj4 f1e2fz10 f1euv43f f174ca62 f1yfdkfd f1aehjj5 f1s6fcnf fdgv6k0 f8fbkgy f1nfllo7 f1djnp8u f1s8kh49 fof7hq0 foksa45 f1j7ml58 f14u7mkt f5zrw40 fto0uou f1ks5ppg feh19e8 f3j3guj fo75joz f1yag6sl fyl8oag fzhtfnv f1rponpz f1rvw2z1 f1muowhs fjj0g3m f163fonl f1yq6w5o f11yjt3y f1jpmc5p f10tv6oz f16xp3sf fwrmqbx f1seuxxq f13gfj74 f1fj3zth"
-        />
+          className="ms-Slider-line line-114"
+        >
+          <span
+            className="ms-Slider-thumb thumb-113"
+            style={
+              {
+                "left": "11.11111111111111%",
+              }
+            }
+          />
+          <span
+            className="lineContainer-115 ms-Slider-inactive inactiveSection-117"
+            style={
+              {
+                "width": "0%",
+              }
+            }
+          />
+          <span
+            className="lineContainer-115 ms-Slider-active activeSection-116"
+            style={
+              {
+                "width": "11.11111111111111%",
+              }
+            }
+          />
+          <span
+            className="lineContainer-115 ms-Slider-inactive inactiveSection-117"
+            style={
+              {
+                "width": "88.88888888888889%",
+              }
+            }
+          />
+        </div>
       </div>
+      <label
+        className="ms-Label ms-Slider-value valueLabel-121"
+      >
+        1
+      </label>
     </div>
   </div>,
-  <div>
+  <div
+    className="ms-Slider ms-Slider-enabled ms-Slider-row ___15qz5iz_0000000 f18og1rn root-109"
+  >
     <label
-      className="fui-Label ___1yevxz2_yljzsa0 fk6fouc f19n0e5 fkhj508 f1i3iumi"
-      htmlFor="fui-r3"
+      className="ms-Label titleLabel-120"
+      htmlFor="Slider1"
     >
-      Height slider
+      Height
     </label>
-    <div>
+    <div
+      className="ms-Slider-container container-111"
+    >
       <div
-        className="fui-Slider ___151n96i_1cavycs f10pi13n fwk3njj f1sdsnyy f122n59 f1oiokrs ftqa4ok f2hkw1w f1b1k54r f4ne723 fh7aioi fqqcjud f1k55ka9 fgclinu fycbxed f16pcs8n ffht0p2 f1p0ul1q f1c901ms f1alokd7 f78i1la f1kvsw7t f8k7e5g f1bw8brt f1pmxfrl fszkfcr f57dp0y f1ap5ily f11dm2qb f136rfnd fdsq1qd f1khssms fq4eyks f1ya6x16 f1e2iu44 ftuszwa f1pffoy2 f1bmyog6 fs6b7xr f15fv2gd f1a78h9h fuok0yf f1nxs5xn fyvtabn fgfd48t f4t5rw1 f4l8x3l f671q34 fvfzmw5 faw1t00 fxdgx5 fii04fa f36hzz8 f1volkfw f1xddb6 fcdikl fhpzgm6 f1q6pm3h f18og1rn fly5x3f"
-        style={
-          {
-            "--fui-Slider--direction": "90deg",
-            "--fui-Slider--progress": "50%",
-            "--fui-Slider--steps-percent": "",
-          }
-        }
+        aria-disabled={false}
+        aria-label="Height"
+        aria-valuemax={150}
+        aria-valuemin={50}
+        aria-valuenow={100}
+        aria-valuetext="100"
+        className="ms-Slider-slideBox ms-Slider-showValue slideBox-112"
+        data-is-focusable={true}
+        id="Slider1"
+        onKeyDown={[Function]}
+        onMouseDown={[Function]}
+        onTouchStart={[Function]}
+        role="slider"
+        tabIndex={0}
       >
-        <input
-          className="fui-Slider__input ___8p3dzw0_2fzfsa0 f1k6fduh fk73vx1 f16hsg94 f1nzqi2z fwpfdsa fuur7zz f1g0x7ka fhxju0i f1qch9an f1cnd47f f1hu3pq6 f11qmguv f19f4twv f1tyq0we f1yfdkfd fly5x3f"
-          id="fui-r3"
-          max={150}
-          min={50}
-          onChange={[Function]}
-          type="range"
-          value={100}
-        />
         <div
-          className="fui-Slider__rail ___1a5brpz_17vwgb3 fnivh3a fc7yr5o f1el4m67 f8yange f1aehjj5 faunodf f88nxoq fd46tj4 f1e2fz10 f10pi13n fdgv6k0 fizngqt fpvhumw f1yog68k f13sgyd8 fzhtfnv f1j7ml58 fx36ao7 fux3rle fly5x3f f1cy86ho f1heqfse fkh49vu f16tdq4e"
-        />
-        <div
-          className="fui-Slider__thumb ___14wdpg0_ohb8140 faunodf f88nxoq fd46tj4 f1e2fz10 f1euv43f f174ca62 f1yfdkfd f1aehjj5 f1s6fcnf fdgv6k0 f8fbkgy f1nfllo7 f1djnp8u f1s8kh49 fof7hq0 foksa45 f1j7ml58 f14u7mkt f5zrw40 fto0uou f1ks5ppg feh19e8 f3j3guj fo75joz f1yag6sl fyl8oag fzhtfnv f1rponpz f1rvw2z1 f1muowhs fjj0g3m f163fonl f1yq6w5o f11yjt3y f1jpmc5p f10tv6oz f16xp3sf fwrmqbx f1seuxxq f13gfj74 f1fj3zth"
-        />
+          className="ms-Slider-line line-114"
+        >
+          <span
+            className="ms-Slider-thumb thumb-113"
+            style={
+              {
+                "left": "50%",
+              }
+            }
+          />
+          <span
+            className="lineContainer-115 ms-Slider-inactive inactiveSection-117"
+            style={
+              {
+                "width": "0%",
+              }
+            }
+          />
+          <span
+            className="lineContainer-115 ms-Slider-active activeSection-116"
+            style={
+              {
+                "width": "50%",
+              }
+            }
+          />
+          <span
+            className="lineContainer-115 ms-Slider-inactive inactiveSection-117"
+            style={
+              {
+                "width": "50%",
+              }
+            }
+          />
+        </div>
       </div>
+      <label
+        className="ms-Label ms-Slider-value valueLabel-121"
+      >
+        100
+      </label>
     </div>
   </div>,
   <div

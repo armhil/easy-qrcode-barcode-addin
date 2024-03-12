@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react';
+import { Slider } from '@fluentui/react';
 import { Button } from '@fluentui/react-components';
 import { AddinUtils, LoggingUtils } from 'easy-addins-utils';
 import Barcode from 'react-barcode';
-import { SliderWrapper } from '../slider';
 import { InputWrapper } from '../input';
+import { useStyles } from './styles';
 
 // Barcode component
 export function BarcodeTab() {
@@ -15,9 +16,8 @@ export function BarcodeTab() {
   const [text, setText] = useState("");
   const [width, setWidth] = useState(1);
   const [height, setHeight] = useState(100);
+  const styles = useStyles();
 
-  const WidthSlider = () => <SliderWrapper label="Width slider" max={50} min={0.4} step={0.2} value={width} setValue={setWidth} />
-  const HeightSlider = () => <SliderWrapper  label="Height slider" max={150} min={50} step={5} value={height} setValue={setHeight} />
   const updateText = (input: string | undefined) => {
     if (input)
       setText(input);
@@ -58,8 +58,8 @@ export function BarcodeTab() {
       <div data-testid='input-barcode-text'>
         <InputWrapper updateText={updateText} value={text} label="Barcode text"/>
       </div>
-      <WidthSlider />
-      <HeightSlider />
+      <Slider className={styles.slider} label="Width" onChange={setWidth} min={0.5} max={5} step={0.5} defaultValue={width} showValue snapToStep />
+      <Slider className={styles.slider} label="Height" onChange={setHeight} min={50} max={150} step={5} defaultValue={height} showValue snapToStep />
       <div ref={ref} data-testid='canvas'>
         <Barcode displayValue={false} renderer='canvas'
           width={width} height={height} value={text}/>

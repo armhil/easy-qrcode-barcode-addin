@@ -3,8 +3,8 @@ import { Button } from '@fluentui/react-components';
 import { AddinUtils, LoggingUtils } from 'easy-addins-utils';
 import QRCode from 'qrcode.react';
 import './../styles/qrcode.css';
-import { SliderWrapper } from './slider';
 import { InputWrapper } from './input';
+import { Slider } from '@fluentui/react';
 // Qr code route
 export function QrCodeRoute() {
   React.useEffect(() => {
@@ -14,8 +14,6 @@ export function QrCodeRoute() {
   const ref = useRef(null);
   const [text, setText] = useState("");
   const [size, setSize] = useState(125);
-
-  const QRScaleSlider = () => <SliderWrapper label='' max={300} min={50} step={5} setValue={setSize} value={size}/>
 
   const updateText = (input: string | undefined) => {
     if (input)
@@ -52,7 +50,7 @@ export function QrCodeRoute() {
   return (
     <React.Fragment>
       <InputWrapper updateText={updateText} value={text} label='QR Code text'/>
-      <QRScaleSlider/>
+      <Slider className="padded-top padded-bottom" label="Size" onChange={(v: any) => setSize(v)} min={50} max={300} step={5} defaultValue={125} showValue snapToStep />
       <div ref={ref}>
         <QRCode size={size} value={text}/>
       </div>
