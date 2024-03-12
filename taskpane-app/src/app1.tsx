@@ -22,9 +22,9 @@ export function App() {
 
   return (
     <div>
-      <TabList selectedValue={selectedTab} onTabSelect={onTabSelect}>
-        <Tab icon={<QrCode24Regular/>} value="qr">QR Codes</Tab>
-        <Tab icon={<BarcodeScanner24Regular/>} value="bar">Bar Codes</Tab>
+      <TabList selectedValue={selectedTab} reserveSelectedTabSpace onTabSelect={onTabSelect}>
+        <Tab icon={<QrCode24Regular/>} value="qr">QR code</Tab>
+        <Tab icon={<BarcodeScanner24Regular/>} value="bar">Bar code</Tab>
         <Tab icon={<StarEmphasis24Filled/>} value="credits">Credits</Tab>
       </TabList>
       <div className={styles.tabContent}>
