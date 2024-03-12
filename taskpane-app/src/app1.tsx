@@ -21,7 +21,7 @@ export function App() {
   }
 
   return (
-    <div className={styles.paddedContent}>
+    <div>
       <TabList selectedValue={selectedTab} onTabSelect={onTabSelect}>
         <Tab icon={<QrCode24Regular/>} value="qr">QR Codes</Tab>
         <Tab icon={<BarcodeScanner24Regular/>} value="bar">Bar Codes</Tab>
