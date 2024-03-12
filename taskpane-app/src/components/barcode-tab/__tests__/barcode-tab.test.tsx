@@ -26,14 +26,15 @@ describe('barcode rendering', () => {
 
     const links = dom.queryAllByRole('link');
     // no links on the page
-    expect(links).toBeUndefined();
+    expect(links.length).toBe(0);
   });
 
   it('should render the canvas correctly', () => {
     const dom = render(<BarcodeTab />);
 
-    const canvas = dom.queryByRole('canvas');
+    const canvas = dom.getByTestId('canvas');
     // no links on the page
-    expect(canvas).not.toBeUndefined();
-  })
+    expect(canvas).not.toBeEmptyDOMElement();
+    expect((canvas.firstChild as any).tagName).toBe('CANVAS');
+  });
 })

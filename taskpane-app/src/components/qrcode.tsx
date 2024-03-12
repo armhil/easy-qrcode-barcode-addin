@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react';
-import { Button, Input } from '@fluentui/react-components';
+import { Button } from '@fluentui/react-components';
 import { AddinUtils, LoggingUtils } from 'easy-addins-utils';
 import QRCode from 'qrcode.react';
 import './../styles/qrcode.css';
 import { SliderWrapper } from './slider';
+import { InputWrapper } from './input';
 // Qr code route
 export function QrCodeRoute() {
   React.useEffect(() => {
@@ -50,17 +51,13 @@ export function QrCodeRoute() {
 
   return (
     <React.Fragment>
-      <p>Select text from your document or type below what you want to generate your code with.</p>
-      <Input
-        value={text}
-        placeholder="Type something or select from your document"
-        onChange={(e: any, v: any) => updateText (v.value)}/>
+      <InputWrapper updateText={updateText} value={text} label='QR Code text'/>
       <QRScaleSlider/>
       <div ref={ref}>
-          <QRCode size={size} value={text}/>
+        <QRCode size={size} value={text}/>
       </div>
       <div className="padded-top">
-          <Button appearance='primary' onClick={insertImage}>Insert Image</Button>
+        <Button appearance='primary' onClick={insertImage}>Insert Image</Button>
       </div>
     </React.Fragment>
   )

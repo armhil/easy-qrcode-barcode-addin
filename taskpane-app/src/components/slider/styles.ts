@@ -1,5 +1,8 @@
 import { makeStyles } from '@fluentui/react-components';
 
 export const useSliderStyles = makeStyles({
-	padded: {'marginTop': '15px'}
+	slider: {
+    'marginTop': '15px',
+    'width': '100%'
+  }
 });

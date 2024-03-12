@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react';
-import { Button, Input, InputOnChangeData } from '@fluentui/react-components';
+import { Button } from '@fluentui/react-components';
 import { AddinUtils, LoggingUtils } from 'easy-addins-utils';
 import Barcode from 'react-barcode';
-import { useInputStyles } from './styles';
 import { SliderWrapper } from '../slider';
+import { InputWrapper } from '../input';
 
 // Barcode component
 export function BarcodeTab() {
@@ -15,10 +15,9 @@ export function BarcodeTab() {
   const [text, setText] = useState("");
   const [width, setWidth] = useState(1);
   const [height, setHeight] = useState(100);
-  const inputStyles = useInputStyles();
 
-  const WidthSlider = () => <SliderWrapper label="Width slider" max={5} min={0.4} step={0.2} value={width} setValue={setWidth} />
-  const HeightSlider = () => <SliderWrapper label="Height slider" max={150} min={50} step={5} value={height} setValue={setHeight} />
+  const WidthSlider = () => <SliderWrapper label="Width slider" max={50} min={0.4} step={0.2} value={width} setValue={setWidth} />
+  const HeightSlider = () => <SliderWrapper  label="Height slider" max={150} min={50} step={5} value={height} setValue={setHeight} />
   const updateText = (input: string | undefined) => {
     if (input)
       setText(input);
@@ -56,20 +55,17 @@ export function BarcodeTab() {
 
   return (
     <>
-      <p>Select text from your document or type below what you want to generate your code with.</p>
-      <Input
-        className={inputStyles.width}
-        value={text}
-        placeholder="Type something or select from your document"
-        onChange={(e: any, d: InputOnChangeData) => updateText(d.value)}/>
-      <HeightSlider />
+      <div data-testid='input-barcode-text'>
+        <InputWrapper updateText={updateText} value={text} label="Barcode text"/>
+      </div>
       <WidthSlider />
-      <div ref={ref}>
-        <Barcode displayValue={false}
-          width={width} height={height} value={text === "" ? "Testing" : text}/>
+      <HeightSlider />
+      <div ref={ref} data-testid='canvas'>
+        <Barcode displayValue={false} renderer='canvas'
+          width={width} height={height} value={text}/>
       </div>
       <div>
-          <Button appearance='primary' onClick={insertImage}>Insert Image</Button>
+          <Button data-testid='btn-insert-image' appearance='primary' onClick={insertImage}>Insert Image</Button>
       </div>
     </>
   );
