@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from './app';
+import { FluentProvider, webLightTheme } from '@fluentui/react-components';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <FluentProvider theme={webLightTheme}>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </FluentProvider>,
+  document.getElementById('root'),
 );

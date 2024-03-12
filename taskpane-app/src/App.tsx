@@ -1,34 +1,39 @@
 import React from 'react';
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import { CommandBar, Fabric } from '@fluentui/react';
 import { initializeIcons } from '@uifabric/icons';
 import { AddinUtils, LoggingUtils } from 'easy-addins-utils';
 import * as Components from './components';
-import * as Constants from './const';
-import './styles/app.css';
+import { SelectTabData, SelectTabEvent, Tab, TabList, TabValue } from '@fluentui/react-components';
+import { BarcodeScanner24Regular, QrCode24Regular, StarEmphasis24Filled } from '@fluentui/react-icons';
+import { useAppStyles } from './app.styles';
 // Default app.js
 export function App() {
   // initialize the app
+  const styles = useAppStyles();
   React.useEffect(() => {
     initializeIcons();
     AddinUtils.Initialize(() => {});
     LoggingUtils.Trace('qrbar-app');
   },[]);
 
+  const [selectedTab, setSelectedTab] = React.useState<TabValue>("qr")
+  const onTabSelect = (e: SelectTabEvent, d: SelectTabData) => {
+    setSelectedTab(d.value);
+  }
+
   return (
-    <Fabric>
-      <CommandBar items={Constants.CommandBarItems.menu} farItems={Constants.CommandBarItems.sideMenu}/>
-      <div className="content-padding">
-        <Router>
-          <Routes>
-              <Route path={Constants.Routes.QRCode} element={<Components.QrCodeRoute/>}/>
-              <Route path={Constants.Routes.Barcode} element={<Components.BarcodeRoute/>}/>
-              <Route path={Constants.Routes.Credits} element={<Components.Credits/>} />
-          </Routes>
-        </Router>
-      </div>
+    <div className={styles.padded}>
+      <TabList selectedValue={selectedTab} onTabSelect={onTabSelect}>
+        <Tab icon={<QrCode24Regular/>} value="qr">QR Codes</Tab>
+        <Tab icon={<BarcodeScanner24Regular/>} value="bar">Bar Codes</Tab>
+        <Tab icon={<StarEmphasis24Filled/>} value="credits">Credits</Tab>
+      </TabList>
+      <>
+        { selectedTab === "qr" && <Components.QrCodeRoute/>}
+        { selectedTab === "bar" && <Components.BarcodeTab/>}
+        { selectedTab === "credits" && <Components.CreditsTab/> }
+      </>
       <Components.GithubFooter/>
-    </Fabric>
+    </div>
   );
 }
 

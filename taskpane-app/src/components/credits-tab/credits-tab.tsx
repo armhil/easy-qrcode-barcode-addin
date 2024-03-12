@@ -1,7 +1,7 @@
 /** credits route - acknowledging the dependencies */
 import React from 'react';
 import { LoggingUtils } from 'easy-addins-utils';
-export function Credits() {
+export function CreditsTab() {
   // useEffect for tracing the route, should be logged only once.
   React.useEffect(() => {
     LoggingUtils.Trace('qrbar-credits');
