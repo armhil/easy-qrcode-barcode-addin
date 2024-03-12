@@ -1,0 +1,191 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`barcode rendering should match with snapshot 1`] = `
+[
+  <div
+    data-testid="input-barcode-text"
+  >
+    <label
+      className="fui-Label ___1yevxz2_yljzsa0 fk6fouc f19n0e5 fkhj508 f1i3iumi"
+      htmlFor="fui-r0"
+    >
+      <b>
+        Barcode text
+      </b>
+    </label>
+    <span
+      className="fui-Input r1jtohuq ___gxxrxg0_glgvo90 fvcxoqz f1ub3y4t f1l4zc64 f1m52nbi f8vnjqi fz1etlk f1klwx88 f1hc16gm fly5x3f ffemd8d"
+    >
+      <input
+        className="fui-Input__input rvp2gzh"
+        id="fui-r0"
+        onChange={[Function]}
+        placeholder="Type something or select from your document"
+        type="text"
+        value=""
+      />
+    </span>
+  </div>,
+  <div
+    className="ms-Slider ms-Slider-enabled ms-Slider-row ___15qz5iz_0000000 f18og1rn root-109"
+  >
+    <label
+      className="ms-Label titleLabel-120"
+      htmlFor="Slider0"
+    >
+      Width
+    </label>
+    <div
+      className="ms-Slider-container container-111"
+    >
+      <div
+        aria-disabled={false}
+        aria-label="Width"
+        aria-valuemax={5}
+        aria-valuemin={0.5}
+        aria-valuenow={1}
+        aria-valuetext="1"
+        className="ms-Slider-slideBox ms-Slider-showValue slideBox-112"
+        data-is-focusable={true}
+        id="Slider0"
+        onKeyDown={[Function]}
+        onMouseDown={[Function]}
+        onTouchStart={[Function]}
+        role="slider"
+        tabIndex={0}
+      >
+        <div
+          className="ms-Slider-line line-114"
+        >
+          <span
+            className="ms-Slider-thumb thumb-113"
+            style={
+              {
+                "left": "11.11111111111111%",
+              }
+            }
+          />
+          <span
+            className="lineContainer-115 ms-Slider-inactive inactiveSection-117"
+            style={
+              {
+                "width": "0%",
+              }
+            }
+          />
+          <span
+            className="lineContainer-115 ms-Slider-active activeSection-116"
+            style={
+              {
+                "width": "11.11111111111111%",
+              }
+            }
+          />
+          <span
+            className="lineContainer-115 ms-Slider-inactive inactiveSection-117"
+            style={
+              {
+                "width": "88.88888888888889%",
+              }
+            }
+          />
+        </div>
+      </div>
+      <label
+        className="ms-Label ms-Slider-value valueLabel-121"
+      >
+        1
+      </label>
+    </div>
+  </div>,
+  <div
+    className="ms-Slider ms-Slider-enabled ms-Slider-row ___15qz5iz_0000000 f18og1rn root-109"
+  >
+    <label
+      className="ms-Label titleLabel-120"
+      htmlFor="Slider1"
+    >
+      Height
+    </label>
+    <div
+      className="ms-Slider-container container-111"
+    >
+      <div
+        aria-disabled={false}
+        aria-label="Height"
+        aria-valuemax={150}
+        aria-valuemin={50}
+        aria-valuenow={100}
+        aria-valuetext="100"
+        className="ms-Slider-slideBox ms-Slider-showValue slideBox-112"
+        data-is-focusable={true}
+        id="Slider1"
+        onKeyDown={[Function]}
+        onMouseDown={[Function]}
+        onTouchStart={[Function]}
+        role="slider"
+        tabIndex={0}
+      >
+        <div
+          className="ms-Slider-line line-114"
+        >
+          <span
+            className="ms-Slider-thumb thumb-113"
+            style={
+              {
+                "left": "50%",
+              }
+            }
+          />
+          <span
+            className="lineContainer-115 ms-Slider-inactive inactiveSection-117"
+            style={
+              {
+                "width": "0%",
+              }
+            }
+          />
+          <span
+            className="lineContainer-115 ms-Slider-active activeSection-116"
+            style={
+              {
+                "width": "50%",
+              }
+            }
+          />
+          <span
+            className="lineContainer-115 ms-Slider-inactive inactiveSection-117"
+            style={
+              {
+                "width": "50%",
+              }
+            }
+          />
+        </div>
+      </div>
+      <label
+        className="ms-Label ms-Slider-value valueLabel-121"
+      >
+        100
+      </label>
+    </div>
+  </div>,
+  <div
+    data-testid="canvas"
+  >
+    <canvas
+      className=""
+    />
+  </div>,
+  <div>
+    <button
+      className="fui-Button r1alrhcs ___1akj6hk_ih97uj0 ffp7eso f1p3nwhy f11589ue f1q5o8ev f1pdflbu f1phragk f15wkkf3 f1s2uweq fr80ssc f1ukrpxl fecsdlb f1rq72xc fnp9lpt f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1d6v5y2 f1rirnrt f1uu00uk fkvaka8 f1ux7til f9a0qzu f1lkg8j3 fkc42ay fq7113v ff1wgvm fiob0tu f1j6scgf f1x4h75k f4xjyn1 fbgcvur f1ks1yx8 f1o6qegi fcnxywj fmxjhhp f9ddjv3 f17t0x8g f194v5ow f1qgg65p fk7jm04 fhgccpy f32wu9k fu5nqqq f13prjl2 f1czftr5 f1nl83rv f12k37oa fr96u23"
+      data-testid="btn-insert-image"
+      onClick={[Function]}
+      type="button"
+    >
+      Insert Image
+    </button>
+  </div>,
+]
+`;
