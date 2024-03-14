@@ -18,11 +18,6 @@ export function BarcodeTab() {
   const [height, setHeight] = useState(100);
   const styles = useStyles();
 
-  const updateText = (input: string | undefined) => {
-    if (input)
-      setText(input);
-  };
-
   const insertImageFromCanvas = () => {
     const canvasValue = getCanvasURL();
     AddinUtils.InsertImage(canvasValue, () => {});
@@ -30,7 +25,7 @@ export function BarcodeTab() {
 
   // Insert image to Word
   const insertImage = () => {
-    if (!text) {
+    if (!text || text.length === 0) {
         AddinUtils.GetText((t: string) => {
           setText(t);
           insertImageFromCanvas();
@@ -56,13 +51,12 @@ export function BarcodeTab() {
   return (
     <>
       <div data-testid='input-barcode-text'>
-        <InputWrapper updateText={updateText} value={text} label="Barcode text"/>
+        <InputWrapper updateText={setText} value={text} label="Barcode text"/>
       </div>
       <Slider className={styles.slider} label="Width" onChange={setWidth} min={0.5} max={5} step={0.5} defaultValue={width} showValue snapToStep />
       <Slider className={styles.slider} label="Height" onChange={setHeight} min={50} max={150} step={5} defaultValue={height} showValue snapToStep />
       <div ref={ref} data-testid='canvas'>
-        <Barcode displayValue={false} renderer='canvas'
-          width={width} height={height} value={text}/>
+        <Barcode displayValue={false} renderer='canvas' width={width} height={height} value={text}/>
       </div>
       <div>
           <Button data-testid='btn-insert-image' appearance='primary' onClick={insertImage}>Insert Image</Button>

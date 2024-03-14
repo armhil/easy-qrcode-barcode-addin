@@ -21,6 +21,7 @@ exports[`barcode rendering should match with snapshot 1`] = `
         id="fui-r0"
         onChange={[Function]}
         placeholder="Type something or select from your document"
+        role="textbox"
         type="text"
         value=""
       />
