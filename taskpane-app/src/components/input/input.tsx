@@ -14,6 +14,8 @@ export const InputWrapper = (props: InputWrapperProps) => {
   return <>
     <Label htmlFor={htmlId}><b>{props.label}</b></Label>
     <Input
+      type='text'
+      role='textbox'
       id={htmlId}
       className={styles.inputStyles}
       value={props.value}
