@@ -13,7 +13,7 @@
 	<Description DefaultValue="Generate a QR Code or Barcode easily." />
 	<IconUrl DefaultValue="https://easyaddins.azurefd.net/easy-qrcode-barcode/images/logo-32x32.png" />
 	<HighResolutionIconUrl DefaultValue="https://easyaddins.azurefd.net/easy-qrcode-barcode/images/logo-64x64.png" />
-	<SupportUrl DefaultValue="https://easyaddins.azurefd.net/easy-qrcode-barcode/docs/support_policy.pdf" />
+	<SupportUrl DefaultValue="https://github.com/armhil/easy-qrcode-barcode-addin/blob/main/submission/documents/support_policy.pdf" />
 	<Hosts>
 		<Host Name="Document"/>
 	</Hosts>
@@ -75,7 +75,7 @@
 			<bt:Urls>
 				<bt:Url id="QRCodeBarcode.Taskpane.Url" DefaultValue="https://easyaddins.azurefd.net/easy-qrcode-barcode/taskpane" />
 				<!--LearnMore URL currently not used -->
-				<bt:Url id="QRCodeBarcode.LearnMore" DefaultValue="https://easyaddins.azurefd.net/easy-qrcode-barcode/docs/privacy_policy.pdf" />
+				<bt:Url id="QRCodeBarcode.LearnMore" DefaultValue="https://github.com/armhil/easy-qrcode-barcode-addin/blob/main/submission/documents/privacy_policy.pdf" />
 			</bt:Urls>
 			<bt:ShortStrings>
 				<bt:String id="QRCodeBarcode.TabLabel" DefaultValue="Easy QR Code and Barcode" />
