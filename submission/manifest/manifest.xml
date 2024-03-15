@@ -5,28 +5,21 @@
 	xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
 	xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
 	xsi:type="TaskPaneApp">
-    <!--IMPORTANT! Id must be unique for your add-in. If you clone this manifest ensure that you change this id to your own GUID -->
 	<Id>f967a47a-ec68-4e13-a818-fbc419b1b79b</Id>
-	<Version>1.0.0.0</Version>
+	<Version>1.0.0.1</Version>
 	<ProviderName>Arman Hilmioglu</ProviderName>
 	<DefaultLocale>en-US</DefaultLocale>
-	<!-- The display name of your add-in. Used on the store and various placed of the Office UI such as the add-ins dialog -->
-	<DisplayName DefaultValue="Easy QRCode and Barcode Generator" />
+	<DisplayName DefaultValue="Easy QR Code and Barcode Generator" />
 	<Description DefaultValue="Generate a QR Code or Barcode easily." />
-	<!--Icon for your add-in. Used on installation screens and the add-ins dialog -->
 	<IconUrl DefaultValue="https://easyaddins.azurefd.net/easy-qrcode-barcode/images/logo-32x32.png" />
 	<HighResolutionIconUrl DefaultValue="https://easyaddins.azurefd.net/easy-qrcode-barcode/images/logo-64x64.png" />
 	<SupportUrl DefaultValue="https://easyaddins.azurefd.net/easy-qrcode-barcode/docs/support_policy.pdf" />
-
-	<!--BeginTaskpaneMode integration. Office 2013 and any client that doesn't understand commands will use this section.
-	This section will also be used if there are no VersionOverrides -->
 	<Hosts>
 		<Host Name="Document"/>
 	</Hosts>
 	<DefaultSettings>
 		<SourceLocation DefaultValue="https://easyaddins.azurefd.net/easy-qrcode-barcode/taskpane" />
 	</DefaultSettings>
-	<!--EndTaskpaneMode integration -->
 	<Permissions>ReadWriteDocument</Permissions>
 	<!--BeginAddinCommandsMode integration-->
 	<VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">   
@@ -35,27 +28,15 @@
 			<DesktopFormFactor>
 				<GetStarted>
 					<Title resid="QRCodeBarcode.GetStarted.Title"/>
-					<!--Description of the Getting Started callout. resid points to a LongString resource -->
 					<Description resid="QRCodeBarcode.GetStarted.Desc"/>
-
-					<!--Not used right now but you need to provide a valid resource. We will add code in the future to consume this URL. 
-						resid points to a Url resource -->
 					<LearnMoreUrl resid="QRCodeBarcode.LearnMore"/>
 				</GetStarted>
-
-				<!--PrimaryCommandSurface==Main Office Ribbon-->
 				<ExtensionPoint xsi:type="PrimaryCommandSurface">
-					<!--Use OfficeTab to extend an existing Tab. Use CustomTab to create a new tab -->
-					<!-- Documentation includes all the IDs currently tested to work -->
 					<CustomTab id="QRCodeBarcode.CustomTab">
 						<!--Group ID-->
 						<Group id="QRCodeBarcode.CustomTab.Group">
-							<!--Label for your group. resid must point to a ShortString resource -->
 							<Label resid="QRCodeBarcode.TabLabel" />
 							<Icon>
-							<!-- Sample Todo: Each size needs its own icon resource or it will look distorted when resized -->
-							<!--Icons. Required sizes 16,31,80, optional 20, 24, 40, 48, 64. Strongly recommended to provide all sizes for great UX -->
-							<!--Use PNG icons and remember that all URLs on the resources section must use HTTPS -->
 								<bt:Image size="16" resid="QRCodeBarcode.Taskpane.Icon16" />
 								<bt:Image size="32" resid="QRCodeBarcode.Taskpane.Icon32" />
 								<bt:Image size="80" resid="QRCodeBarcode.Taskpane.Icon80" />
