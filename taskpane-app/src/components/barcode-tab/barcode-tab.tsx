@@ -31,11 +31,8 @@ export function BarcodeTab() {
           insertImageFromCanvas();
         });
     }
-    else if (text && text.length) {
-      insertImageFromCanvas();
-    }
     else {
-        //AddinUtils.("Could get the data URL from the canvas");
+      insertImageFromCanvas();
     }
   };
 
@@ -55,9 +52,12 @@ export function BarcodeTab() {
       </div>
       <Slider className={styles.slider} label="Width" onChange={setWidth} min={0.5} max={5} step={0.5} defaultValue={width} showValue snapToStep />
       <Slider className={styles.slider} label="Height" onChange={setHeight} min={50} max={150} step={5} defaultValue={height} showValue snapToStep />
-      <div ref={ref} data-testid='canvas'>
-        <Barcode displayValue={false} renderer='canvas' width={width} height={height} value={text}/>
-      </div>
+      { // barcode doesn't deal well with empty text
+        (text && text.length > 0) &&
+        <div ref={ref} data-testid='barcode-canvas'>
+          <Barcode displayValue={false} renderer='canvas' width={width} height={height} value={text}/>
+       </div>
+      }
       <div>
           <Button data-testid='btn-insert-image' appearance='primary' onClick={insertImage}>Insert Image</Button>
       </div>
