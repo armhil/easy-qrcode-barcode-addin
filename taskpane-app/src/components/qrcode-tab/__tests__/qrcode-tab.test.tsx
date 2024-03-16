@@ -2,12 +2,12 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { render, fireEvent } from '@testing-library/react';
 import { AddinUtils, LoggingUtils } from 'easy-addins-utils';
-import { BarcodeTab } from '../barcode-tab';
+import { QrCodeTab } from '../qrcode-tab';
 
-describe('barcode rendering', () => {
+describe('qrcode rendering', () => {
   it('should match with snapshot', () => {
     const tree = renderer.create(
-      <BarcodeTab />
+      <QrCodeTab />
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -16,33 +16,23 @@ describe('barcode rendering', () => {
     const traceMockFn = jest.fn();
     LoggingUtils.Trace = traceMockFn;
 
-    render(<BarcodeTab />);
+    render(<QrCodeTab />);
     expect(traceMockFn).toHaveBeenCalledTimes(1);
-    expect(traceMockFn).toHaveBeenCalledWith('qrbar-barcode');
+    expect(traceMockFn).toHaveBeenCalledWith('qrbar-qrcode');
   })
 
   it('should render links with correct attributes', () => {
-    const dom = render(<BarcodeTab />);
+    const dom = render(<QrCodeTab />);
 
     const links = dom.queryAllByRole('link');
     // no links on the page
     expect(links.length).toBe(0);
   });
 
-  it('should not render the canvas on empty text', () => {
-    const dom = render(<BarcodeTab />);
+  it('should render the canvas correctly', () => {
+    const dom = render(<QrCodeTab />);
 
-    const canvas = dom.queryByTestId('barcode-canvas');
-    expect(canvas).toBeNull();
-  });
-
-  it('should render the canvas correctly on non-empty text', () => {
-    const dom = render(<BarcodeTab />);
-    // enter value testing
-    const input = dom.queryAllByRole('textbox');
-    fireEvent.change(input[0] as HTMLElement, {target: {value: 'testing'}});
-
-    const canvas = dom.getByTestId('barcode-canvas');
+    const canvas = dom.getByTestId('qrcode-canvas');
     expect(canvas).not.toBeEmptyDOMElement();
     expect((canvas.firstChild as any).tagName).toBe('CANVAS');
   });
@@ -50,7 +40,7 @@ describe('barcode rendering', () => {
   it('should attempt to read from document if textbox is empty', () => {
     AddinUtils.InsertImage = jest.fn();
     AddinUtils.GetText = jest.fn();
-    const dom = render(<BarcodeTab />);
+    const dom = render(<QrCodeTab />);
 
     const insertButton = dom.queryByRole('button');
     insertButton!.click();
@@ -62,7 +52,7 @@ describe('barcode rendering', () => {
   it('should attempt to insert image if textbox is not empty', () => {
     AddinUtils.InsertImage = jest.fn();
     AddinUtils.GetText = jest.fn();
-    const dom = render(<BarcodeTab />);
+    const dom = render(<QrCodeTab />);
 
     const input = dom.queryAllByRole('textbox');
     fireEvent.change(input[0] as HTMLElement, {target: {value: 'testing'}});

@@ -28,7 +28,7 @@ export function App() {
         <Tab icon={<StarEmphasis24Filled/>} value="credits">Credits</Tab>
       </TabList>
       <div className={styles.tabContent}>
-        { selectedTab === "qr" && <Components.QrCodeRoute/>}
+        { selectedTab === "qr" && <Components.QrCodeTab/>}
         { selectedTab === "bar" && <Components.BarcodeTab/>}
         { selectedTab === "credits" && <Components.CreditsTab/> }
       </div>
