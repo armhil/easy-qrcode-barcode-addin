@@ -1,5 +1,5 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import renderer, { act } from 'react-test-renderer';
 import { render, fireEvent } from '@testing-library/react';
 import { AddinUtils, LoggingUtils } from 'easy-addins-utils';
 import { BarcodeTab } from '../barcode-tab';
@@ -55,8 +55,13 @@ describe('barcode rendering', () => {
     const insertButton = dom.queryByRole('button');
     insertButton!.click();
     expect(AddinUtils.GetText).toHaveBeenCalledTimes(1);
-    // as far as we go without further mocking the GetText callbacking
     expect(AddinUtils.InsertImage).toHaveBeenCalledTimes(0);
+    // manually invoke the callback
+    // wrap in act because state will change
+    act(() => {
+      (AddinUtils.GetText as jest.Mock).mock.lastCall[0]();
+      expect(AddinUtils.InsertImage).toHaveBeenCalledTimes(1);
+    });
   });
 
   it('should attempt to insert image if textbox is not empty', () => {
