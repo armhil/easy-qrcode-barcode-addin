@@ -29,4 +29,4 @@ jobs:
         tenantId: ${{ secrets.ENTRA_TENANTID }}
         storageAccountList: ${{ secrets.STORAGE_ACCOUNT_LIST }}
         containerName: "$web"
-        directoriesToUpload: '[{"path": "taskpane-app/build", "baseContainerPath": "easy-qrcode-barcode/taskpane", "shouldRecurse": true },{"path": "submission/images", "baseContainerPath": "easy-qrcode-barcode/images", "shouldRecurse": false }]'
+        directoriesToUpload: '[{"directoryToUpload": "taskpane-app/build", "baseContainerPath": "easy-qrcode-barcode/taskpane", "shouldRecurse": true },{"directoryToUpload": "submission/images", "baseContainerPath": "easy-qrcode-barcode/images", "shouldRecurse": false }]'
