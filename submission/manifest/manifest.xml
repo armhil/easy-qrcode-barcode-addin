@@ -10,7 +10,7 @@
 	<ProviderName>Arman Hilmioglu</ProviderName>
 	<DefaultLocale>en-US</DefaultLocale>
 	<DisplayName DefaultValue="Easy QR Code and Barcode Generator" />
-	<Description DefaultValue="Generate a QR Code or Barcode easily." />
+	<Description DefaultValue="Generate a QR Code or Barcode from provided text easily and insert into your document." />
 	<IconUrl DefaultValue="https://easyaddins.azurefd.net/easy-qrcode-barcode/images/logo-32x32.png" />
 	<HighResolutionIconUrl DefaultValue="https://easyaddins.azurefd.net/easy-qrcode-barcode/images/logo-64x64.png" />
 	<SupportUrl DefaultValue="https://github.com/armhil/easy-qrcode-barcode-addin/blob/main/submission/documents/support_policy.pdf" />
