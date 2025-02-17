@@ -17,7 +17,7 @@ describe('footer rendering', () => {
       <GithubFooter />
     );
 
-    const githubLink = dom.queryByRole('button');
+    const githubLink = dom.queryByTestId('contribute-github-button');
     expect(githubLink).not.toBeUndefined();
   });
 
@@ -31,7 +31,7 @@ describe('footer rendering', () => {
     const mockOpenFn: any = jest.fn();
     (window as any).open = mockOpenFn;
 
-    const githubLink = dom.queryByRole('button');
+    const githubLink = dom.queryByTestId('contribute-github-button');
     githubLink?.click();
     expect(mockTrackFn).toHaveBeenCalledTimes(1);
     expect(mockTrackFn).toHaveBeenCalledWith('qrbar-github');

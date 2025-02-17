@@ -7,12 +7,29 @@ exports[`footer rendering should match with snapshot 1`] = `
   <div
     className="___1nh4tgk_0000000 f6ogs8q f19lj068"
   >
-    <img
-      alt="github icon"
-      height="32px"
-      src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-      width="32px"
-    />
+    <button
+      aria-expanded="false"
+      className="fui-Link ___xrvnvs0_qgv3400 f2hkw1w f3rmtva f1ewtqcl fyind8e f1k6fduh f1w7gpdv fk6fouc fkhj508 figsok6 f1hu3pq6 f11qmguv f19f4twv f1tyq0we f1g0x7ka fhxju0i f1qch9an f1cnd47f fqv5qza f1vmzxwi f1o700av f1iuv45f f1cmlufx f9n3di6 f1ids18y f1tx3yz7 f1deo86v f1eh06m1 f1iescvh fhgqx19 f1olyrje f1p93eir f1nev41a f1ern45e f1n71otn f1h8hb77 f1deefiw"
+      data-tabster="{"restorer":{"type":1}}"
+      data-testid="build-date-button"
+      disabled={false}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      role="button"
+      tabIndex={0}
+      type="button"
+    >
+      <img
+        alt="github icon"
+        height="32px"
+        src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+        width="32px"
+      />
+    </button>
   </div>
   <span
     className="___1opxvxh_0000000 f1bc2y4q"
@@ -21,6 +38,7 @@ exports[`footer rendering should match with snapshot 1`] = `
   </span>
   <button
     className="fui-Link ___xrvnvs0_qgv3400 f2hkw1w f3rmtva f1ewtqcl fyind8e f1k6fduh f1w7gpdv fk6fouc fkhj508 figsok6 f1hu3pq6 f11qmguv f19f4twv f1tyq0we f1g0x7ka fhxju0i f1qch9an f1cnd47f fqv5qza f1vmzxwi f1o700av f1iuv45f f1cmlufx f9n3di6 f1ids18y f1tx3yz7 f1deo86v f1eh06m1 f1iescvh fhgqx19 f1olyrje f1p93eir f1nev41a f1ern45e f1n71otn f1h8hb77 f1deefiw"
+    data-testid="contribute-github-button"
     disabled={false}
     onClick={[Function]}
     onKeyDown={[Function]}
