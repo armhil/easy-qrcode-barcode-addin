@@ -19,6 +19,10 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         slug: armhil/easy-qrcode-barcode-addin
+    - name: Update build date
+      run: |
+        DATE=$(date +'%Y-%m-%d %H:%M')
+        sed -i "s/REPLACE_BUILD_DATE/$DATE/" taskpane-app/src/build-date.ts
     - run: npm run build
       working-directory: taskpane-app
     - name: Upload app
