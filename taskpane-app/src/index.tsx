@@ -4,9 +4,11 @@ import App from './app';
 import { FluentProvider, webLightTheme } from '@fluentui/react-components';
 import './index.css';
 
-ReactDOM.render(
-  <FluentProvider theme={webLightTheme}>
-    <App />
-  </FluentProvider>,
-  document.getElementById('root'),
-);
+window.Office.onReady(() => {
+  ReactDOM.render(
+    <FluentProvider theme={webLightTheme}>
+      <App />
+    </FluentProvider>,
+    document.getElementById('root'),
+  );
+});

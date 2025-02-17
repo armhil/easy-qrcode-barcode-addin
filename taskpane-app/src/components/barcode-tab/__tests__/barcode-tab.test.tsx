@@ -1,6 +1,6 @@
 import React from 'react';
-import renderer, { act } from 'react-test-renderer';
-import { render, fireEvent } from '@testing-library/react';
+import renderer from 'react-test-renderer';
+import { act, render, fireEvent } from '@testing-library/react';
 import { AddinUtils, LoggingUtils } from 'easy-addins-utils';
 import { BarcodeTab } from '../barcode-tab';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { initializeIcons } from '@uifabric/icons';
-import { AddinUtils, LoggingUtils } from 'easy-addins-utils';
+import { LoggingUtils } from 'easy-addins-utils';
 import { SelectTabData, SelectTabEvent, Tab, TabList, TabValue } from '@fluentui/react-components';
 import { BarcodeScanner24Regular, QrCode24Regular, StarEmphasis24Filled } from '@fluentui/react-icons';
 import { useAppStyles } from './app.styles';
@@ -11,7 +11,6 @@ export function App() {
   const styles = useAppStyles();
   React.useEffect(() => {
     initializeIcons();
-    AddinUtils.Initialize(() => {});
     LoggingUtils.Trace('qrbar-app');
   },[]);
 
