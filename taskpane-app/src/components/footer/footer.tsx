@@ -21,7 +21,7 @@ export function GithubFooter() {
       </PopoverTrigger>
 
       <PopoverSurface>
-        Build number: {BUILD_DATE}
+        Build date: {BUILD_DATE}
       </PopoverSurface>
      </Popover>
       </div>
