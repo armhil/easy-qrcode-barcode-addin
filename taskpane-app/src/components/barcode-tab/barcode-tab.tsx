@@ -26,10 +26,10 @@ export function BarcodeTab() {
   // Insert image to Word
   const insertImage = () => {
     if (!text || text.length === 0) {
-        AddinUtils.GetText((t: string) => {
-          setText(t);
-          insertImageFromCanvas();
-        });
+      AddinUtils.GetText((t: string) => {
+        setText(t);
+        insertImageFromCanvas();
+      });
     }
     else {
       insertImageFromCanvas();

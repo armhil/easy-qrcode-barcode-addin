@@ -20,9 +20,9 @@ export function QrCodeTab() {
   const insertImage = () => {
     if (!text || text.length === 0) {
       AddinUtils.GetText((t: string) => {
-          setText(t);
-          let canvasUrl = getCanvasURL();
-          AddinUtils.InsertImage(canvasUrl, () => {});
+        setText(t);
+        let canvasUrl = getCanvasURL();
+        AddinUtils.InsertImage(canvasUrl, () => {});
       });
     }
     else {
@@ -37,7 +37,7 @@ export function QrCodeTab() {
       let str = dataValue.toDataURL();
       str = str.split('data:image/png;base64,')[1];
       return str;
-      }
+    }
   };
 
   return (
