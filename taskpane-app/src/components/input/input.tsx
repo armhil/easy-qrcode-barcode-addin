@@ -19,7 +19,7 @@ export const InputWrapper = (props: InputWrapperProps) => {
       id={htmlId}
       className={styles.inputStyles}
       value={props.value}
-      placeholder="Type something or select from your document"
+      placeholder="Type here or select from your document"
       onChange={(e: any, d: InputOnChangeData) => props.updateText(d.value)}/>
   </>
 }
