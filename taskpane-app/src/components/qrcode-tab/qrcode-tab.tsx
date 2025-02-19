@@ -16,18 +16,21 @@ export function QrCodeTab() {
   const [size, setSize] = useState(125);
   const styles = useStyles();
 
+  const insertImageFromCanvas = () => {
+    const canvasValue = getCanvasURL();
+    AddinUtils.InsertImage(canvasValue, () => {});
+  }
+  
   // Insert image to Word
   const insertImage = () => {
     if (!text || text.length === 0) {
       AddinUtils.GetText((t: string) => {
         setText(t);
-        let canvasUrl = getCanvasURL();
-        AddinUtils.InsertImage(canvasUrl, () => {});
+        insertImageFromCanvas();
       });
     }
     else {
-      let canvasUrl = getCanvasURL();
-      AddinUtils.InsertImage(canvasUrl, () => {});
+      insertImageFromCanvas();
     }
   };
   
