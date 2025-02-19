@@ -1,0 +1,1 @@
+export const BUILD_DATE = "REPLACE_BUILD_DATE";
