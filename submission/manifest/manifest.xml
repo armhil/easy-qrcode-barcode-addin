@@ -6,19 +6,19 @@
 	xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
 	xsi:type="TaskPaneApp">
 	<Id>f967a47a-ec68-4e13-a818-fbc419b1b79b</Id>
-	<Version>1.0.0.1</Version>
+	<Version>1.0.0.2</Version>
 	<ProviderName>Arman Hilmioglu</ProviderName>
 	<DefaultLocale>en-US</DefaultLocale>
 	<DisplayName DefaultValue="Easy QR Code and Barcode Generator" />
 	<Description DefaultValue="Generate a QR Code or Barcode from provided text easily and insert into your document." />
-	<IconUrl DefaultValue="https://easyaddins.azurefd.net/easy-qrcode-barcode/images/logo-32x32.png" />
-	<HighResolutionIconUrl DefaultValue="https://easyaddins.azurefd.net/easy-qrcode-barcode/images/logo-64x64.png" />
+	<IconUrl DefaultValue="https://raw.githubusercontent.com/armhil/armhil.github.io/refs/heads/main/easy-qrcode-barcode/images/logo-32x32.png" />
+	<HighResolutionIconUrl DefaultValue="https://raw.githubusercontent.com/armhil/armhil.github.io/refs/heads/main/easy-qrcode-barcode/images/logo-64x64.png" />
 	<SupportUrl DefaultValue="https://github.com/armhil/easy-qrcode-barcode-addin/blob/main/submission/documents/support_policy.pdf" />
 	<Hosts>
 		<Host Name="Document"/>
 	</Hosts>
 	<DefaultSettings>
-		<SourceLocation DefaultValue="https://easyaddins.azurefd.net/easy-qrcode-barcode/taskpane" />
+		<SourceLocation DefaultValue="https://apps.armans.software/easy-qrcode-barcode/taskpane" />
 	</DefaultSettings>
 	<Permissions>ReadWriteDocument</Permissions>
 	<!--BeginAddinCommandsMode integration-->
@@ -68,12 +68,12 @@
 		</Hosts>
 		<Resources>
 			<bt:Images>
-				<bt:Image id="QRCodeBarcode.Taskpane.Icon16" DefaultValue="https://easyaddins.azurefd.net/easy-qrcode-barcode/images/logo-16x16.png" />
-				<bt:Image id="QRCodeBarcode.Taskpane.Icon32" DefaultValue="https://easyaddins.azurefd.net/easy-qrcode-barcode/images/logo-32x32.png" />
-				<bt:Image id="QRCodeBarcode.Taskpane.Icon80" DefaultValue="https://easyaddins.azurefd.net/easy-qrcode-barcode/images/logo-80x80.png" />
+				<bt:Image id="QRCodeBarcode.Taskpane.Icon16" DefaultValue="https://apps.armans.software/easy-qrcode-barcode/images/logo-16x16.png" />
+				<bt:Image id="QRCodeBarcode.Taskpane.Icon32" DefaultValue="https://apps.armans.software/easy-qrcode-barcode/images/logo-32x32.png" />
+				<bt:Image id="QRCodeBarcode.Taskpane.Icon80" DefaultValue="https://apps.armans.software/easy-qrcode-barcode/images/logo-80x80.png" />
 			</bt:Images>
 			<bt:Urls>
-				<bt:Url id="QRCodeBarcode.Taskpane.Url" DefaultValue="https://easyaddins.azurefd.net/easy-qrcode-barcode/taskpane" />
+				<bt:Url id="QRCodeBarcode.Taskpane.Url" DefaultValue="https://apps.armans.software/easy-qrcode-barcode/taskpane" />
 				<!--LearnMore URL currently not used -->
 				<bt:Url id="QRCodeBarcode.LearnMore" DefaultValue="https://github.com/armhil/easy-qrcode-barcode-addin/blob/main/submission/documents/privacy_policy.pdf" />
 			</bt:Urls>
