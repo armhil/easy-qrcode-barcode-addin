@@ -25,6 +25,25 @@ jobs:
         sed -i "s/REPLACE_BUILD_DATE/$DATE/" taskpane-app/src/build-date.ts
     - run: npm run build
       working-directory: taskpane-app
+    - name: Create PR for build artifacts
+      run: |
+        TARGET_REPO="https://x-access-token:${{ secrets.TARGET_REPO_TOKEN }}@github.com/armhil/armhil.github.io.git"
+        # Clone the target repository into a folder named "target-repo"
+        git clone "$TARGET_REPO" target-repo
+        cd target-repo
+        # Create a new branch with a timestamp-based name
+        BRANCH="add-build-artifacts-$(date +%s)"
+        git checkout -b "$BRANCH"
+        # Copy build artifacts from current workspace into the target repo folder
+        cp -R ../taskpane-app/build ./easy-qrcode-barcode/taskpane
+        git add .
+        git commit -m "Add build artifacts from easy-qrcode-barcode-addin build"
+        git push origin "$BRANCH"
+        # Ensure GitHub CLI is authenticated using the same token
+        echo "${{ secrets.TARGET_REPO_TOKEN }}" | gh auth login --with-token
+        # Create a pull request targeting the main branch
+        gh pr create --title "Add Build Artifacts from easy-qrcode-barcode-addin" --body "This PR includes the latest build artifacts." --base main
+
     - name: Upload app
       uses: armhil/azure-blobs-content-uploader@1.0.9
       with:
