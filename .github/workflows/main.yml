@@ -29,6 +29,8 @@ jobs:
       run: |
         TARGET_REPO="https://x-access-token:${{ secrets.TARGET_REPO_TOKEN }}@github.com/armhil/armhil.github.io.git"
         # Clone the target repository into a folder named "target-repo"
+        git config --global user.email "arman.hilmioglu@gmail.com"
+        git config --global user.name "armhil"
         git clone "$TARGET_REPO" target-repo
         cd target-repo
         # Create a new branch with a timestamp-based name
