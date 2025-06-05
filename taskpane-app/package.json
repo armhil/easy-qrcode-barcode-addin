@@ -1,8 +1,8 @@
 {
   "name": "taskpane-app",
   "version": "0.1.0",
-  "homepage": "./taskpane",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "@fluentui/react": "^8.99.0",
     "@fluentui/react-components": "^9.46.8",
