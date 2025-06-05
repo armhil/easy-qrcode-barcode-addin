@@ -37,7 +37,11 @@ jobs:
         BRANCH="add-build-artifacts-$(date +%s)"
         git checkout -b "$BRANCH"
         # Copy build artifacts from current workspace into the target repo folder
-        cp -R ../taskpane-app/build ./easy-qrcode-barcode/taskpane
+        cp -R ../taskpane-app/build/index.html ./easy-qrcode-barcode/taskpane/index.html
+        cp -R ../taskpane-app/build/static/js/main.js ./easy-qrcode-barcode/taskpane/static/js/main.js
+        cp -R ../taskpane-app/build/static/css/main.css ./easy-qrcode-barcode/taskpane/static/css/main.css
+        cp -R ../submission/images/* ./easy-qrcode-barcode/images/
+        cp -R ../submission/documents/* ./easy-qrcode-barcode/documents/
         git add .
         git commit -m "Add build artifacts from easy-qrcode-barcode-addin build"
         git push origin "$BRANCH"
