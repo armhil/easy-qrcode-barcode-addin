@@ -43,37 +43,15 @@ jobs:
         cp -R ../submission/images/* ./easy-qrcode-barcode/images/
         cp -R ../submission/documents/* ./easy-qrcode-barcode/documents/
         git add .
-        git commit -m "Add build artifacts from easy-qrcode-barcode-addin build"
-        git push origin "$BRANCH"
-        # Ensure GitHub CLI is authenticated using the same token
-        echo "${{ secrets.TARGET_REPO_TOKEN }}" | gh auth login --with-token
-        # Create a pull request targeting the main branch
-        gh pr create --title "Add Build Artifacts from easy-qrcode-barcode-addin" --body "This PR includes the latest build artifacts." --base main
-
-    - name: Upload app
-      uses: armhil/azure-blobs-content-uploader@1.0.9
-      with:
-        clientId: ${{ secrets.ENTRA_CLIENTID }}
-        clientSecret: ${{ secrets.ENTRA_CLIENTSECRET }}
-        tenantId: ${{ secrets.ENTRA_TENANTID }}
-        storageAccountList: ${{ secrets.STORAGE_ACCOUNT_LIST }}
-        
-        containerName: "$web"
-        directoriesToUpload: | 
-          [
-            {
-              "directoryToUpload": "taskpane-app/build",
-              "baseContainerPath": "easy-qrcode-barcode/taskpane",
-              "shouldRecurse": true
-            },
-            {
-              "directoryToUpload": "submission/images",
-              "baseContainerPath": "easy-qrcode-barcode/images",
-              "shouldRecurse": false
-            },
-            {
-              "directoryToUpload": "submission/documents",
-              "baseContainerPath": "easy-qrcode-barcode/documents",
-              "shouldRecurse": false
-            }
-          ]
+        # Check if there are staged changes
+        if git diff --staged --quiet; then
+          echo "No changes to commit. Exiting."
+          exit 0
+        else
+          git commit -m "Add build artifacts from easy-qrcode-barcode-addin build"
+          git push origin "$BRANCH"
+          # Authenticate GitHub CLI using the secret token
+          echo "${{ secrets.TARGET_REPO_TOKEN }}" | gh auth login --with-token
+          # Create a pull request targeting the main branch
+          gh pr create --title "Add Build Artifacts from easy-qrcode-barcode-addin" --body "This PR includes the latest build artifacts." --base main
+        fi
