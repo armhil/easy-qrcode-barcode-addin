@@ -4,6 +4,7 @@ import { LoggingUtils } from 'easy-addins-utils';
 import { SelectTabData, SelectTabEvent, Tab, TabList, TabValue } from '@fluentui/react-components';
 import { BarcodeScanner24Regular, QrCode24Regular, StarEmphasis24Filled } from '@fluentui/react-icons';
 import { useAppStyles } from './app.styles';
+import { BUILD_DATE } from './build-date';
 import * as Components from './components';
 // Default app.ts
 export function App() {
@@ -11,7 +12,7 @@ export function App() {
   const styles = useAppStyles();
   React.useEffect(() => {
     initializeIcons();
-    LoggingUtils.Trace('qrbar-app');
+    LoggingUtils.Trace(`qrbar-app-${BUILD_DATE}`);
   },[]);
 
   const [selectedTab, setSelectedTab] = React.useState<TabValue>("qr")
