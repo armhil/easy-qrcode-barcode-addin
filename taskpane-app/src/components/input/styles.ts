@@ -1,8 +1,8 @@
 import { makeStyles } from '@fluentui/react-components';
 
 export const useStyles = makeStyles({
-	inputStyles: {
+  inputStyles: {
     width: '100%',
-    marginTop: '10px'
-  }
-})
+    marginTop: '10px',
+  },
+});

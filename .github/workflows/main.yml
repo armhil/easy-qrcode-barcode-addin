@@ -12,6 +12,8 @@ jobs:
         node-version: 16
     - run: npm ci
       working-directory: taskpane-app
+    - run: npx eslint .
+      working-directory: taskpane-app
     - run: npm test -- --coverage
       working-directory: taskpane-app
     - name: Upload coverage reports to Codecov

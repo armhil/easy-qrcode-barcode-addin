@@ -6,9 +6,7 @@ import { BarcodeTab } from '../barcode-tab';
 
 describe('barcode rendering', () => {
   it('should match with snapshot', () => {
-    const tree = renderer.create(
-      <BarcodeTab />
-    ).toJSON();
+    const tree = renderer.create(<BarcodeTab />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -19,7 +17,7 @@ describe('barcode rendering', () => {
     render(<BarcodeTab />);
     expect(traceMockFn).toHaveBeenCalledTimes(1);
     expect(traceMockFn).toHaveBeenCalledWith('qrbar-barcode');
-  })
+  });
 
   it('should render links with correct attributes', () => {
     const dom = render(<BarcodeTab />);
@@ -40,11 +38,11 @@ describe('barcode rendering', () => {
     const dom = render(<BarcodeTab />);
     // enter value testing
     const input = dom.queryAllByRole('textbox');
-    fireEvent.change(input[0] as HTMLElement, {target: {value: 'testing'}});
+    fireEvent.change(input[0] as HTMLElement, { target: { value: 'testing' } });
 
     const canvas = dom.getByTestId('barcode-canvas');
     expect(canvas).not.toBeEmptyDOMElement();
-    expect((canvas.firstChild as any).tagName).toBe('CANVAS');
+    expect((canvas.firstChild as HTMLElement).tagName).toBe('CANVAS');
   });
 
   it('should attempt to read from document if textbox is empty', () => {
@@ -70,10 +68,10 @@ describe('barcode rendering', () => {
     const dom = render(<BarcodeTab />);
 
     const input = dom.queryAllByRole('textbox');
-    fireEvent.change(input[0] as HTMLElement, {target: {value: 'testing'}});
+    fireEvent.change(input[0] as HTMLElement, { target: { value: 'testing' } });
     const insertButton = dom.queryByRole('button');
     insertButton!.click();
     expect(AddinUtils.GetText).toHaveBeenCalledTimes(0);
     expect(AddinUtils.InsertImage).toHaveBeenCalledTimes(1);
   });
-})
+});

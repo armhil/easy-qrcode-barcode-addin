@@ -6,9 +6,7 @@ import { QrCodeTab } from '../qrcode-tab';
 
 describe('qrcode rendering', () => {
   it('should match with snapshot', () => {
-    const tree = renderer.create(
-      <QrCodeTab />
-    ).toJSON();
+    const tree = renderer.create(<QrCodeTab />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -19,7 +17,7 @@ describe('qrcode rendering', () => {
     render(<QrCodeTab />);
     expect(traceMockFn).toHaveBeenCalledTimes(1);
     expect(traceMockFn).toHaveBeenCalledWith('qrbar-qrcode');
-  })
+  });
 
   it('should render links with correct attributes', () => {
     const dom = render(<QrCodeTab />);
@@ -34,7 +32,7 @@ describe('qrcode rendering', () => {
 
     const canvas = dom.getByTestId('qrcode-canvas');
     expect(canvas).not.toBeEmptyDOMElement();
-    expect((canvas.firstChild as any).tagName).toBe('CANVAS');
+    expect((canvas.firstChild as HTMLElement).tagName).toBe('CANVAS');
   });
 
   it('should attempt to read from document if textbox is empty', () => {
@@ -60,10 +58,10 @@ describe('qrcode rendering', () => {
     const dom = render(<QrCodeTab />);
 
     const input = dom.queryAllByRole('textbox');
-    fireEvent.change(input[0] as HTMLElement, {target: {value: 'testing'}});
+    fireEvent.change(input[0] as HTMLElement, { target: { value: 'testing' } });
     const insertButton = dom.queryByRole('button');
     insertButton!.click();
     expect(AddinUtils.GetText).toHaveBeenCalledTimes(0);
     expect(AddinUtils.InsertImage).toHaveBeenCalledTimes(1);
   });
-})
+});
