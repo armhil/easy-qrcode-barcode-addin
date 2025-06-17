@@ -8,7 +8,7 @@
   <ProviderName>Arman Hilmioglu</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Easy QR Code and Barcode Generator" />
-  <Description DefaultValue="Generate a QR Code or Barcode from provided text easily and insert into your document." />
+  <Description DefaultValue="Generate a QR Code or Barcode from provided text easily and insert into your document, presentation or workbook." />
   <IconUrl DefaultValue="https://apps.armans.software/easy-qrcode-barcode/images/logo-32x32.png" />
   <HighResolutionIconUrl DefaultValue="https://apps.armans.software/easy-qrcode-barcode/images/logo-64x64.png" />
   <SupportUrl DefaultValue="https://github.com/armhil/easy-qrcode-barcode-addin/blob/main/submission/documents/support_policy.pdf" />
@@ -150,7 +150,6 @@
       </bt:Images>
       <bt:Urls>
         <bt:Url id="QRCodeBarcode.Taskpane.Url" DefaultValue="https://apps.armans.software/easy-qrcode-barcode/taskpane" />
-        <!--LearnMore URL currently not used -->
         <bt:Url id="QRCodeBarcode.LearnMore" DefaultValue="https://github.com/armhil/easy-qrcode-barcode-addin/blob/main/submission/documents/privacy_policy.pdf" />
       </bt:Urls>
       <bt:ShortStrings>
@@ -159,8 +158,8 @@
         <bt:String id="QRCodeBarcode.GetStarted.Title" DefaultValue="QR Code and Barcode generator is ready!"/>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="QRCodeBarcode.Taskpane.Tooltip" DefaultValue="Choose your favourite theme, see how it works and format your text as code." />
-        <bt:String id="QRCodeBarcode.GetStarted.Desc" DefaultValue="Easy Code Formatter add-in is loaded and now available in this tab. Try it out!" />
+        <bt:String id="QRCodeBarcode.Taskpane.Tooltip" DefaultValue="Start here, to generate your QR codes or barcodes." />
+        <bt:String id="QRCodeBarcode.GetStarted.Desc" DefaultValue="Start here, to generate your QR codes or barcodes. Try it out!" />
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
