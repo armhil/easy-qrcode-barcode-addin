@@ -3,7 +3,9 @@
 [![Build and publish](https://github.com/armhil/easy-qrcode-barcode-addin/actions/workflows/main.yml/badge.svg)](https://github.com/armhil/easy-qrcode-barcode-addin/actions/workflows/main.yml)
 [![codecov](https://codecov.io/gh/armhil/easy-qrcode-barcode-addin/graph/badge.svg?token=BQYL5Z1E7W)](https://codecov.io/gh/armhil/easy-qrcode-barcode-addin)
 
-[Easy QR code and Barcode generator](https://appsource.microsoft.com/en/product/office/WA200002492?tab=Overview) is a Microsoft Word add-in, I'm working on making it cross-platform, that allows people to generate QRs and Barcodes in Word docs. I finally got around open-sourcing this.
+[Easy QR code and Barcode generator](https://appsource.microsoft.com/en/product/office/WA200002492?tab=Overview) is a M365 productivity suite add-in for Word, PowerPoint and Excel, that allows people to generate QRs and Barcodes in documents, worksheets and presentations. 
+
+I'm working on making it cross-platform, and I finally got around open-sourcing this.
 
 I'd say it's safe to ignore the rating as this app in appsource, it had some legit outages which clashed with my holidays, but I've done my part, TypeScriptified the whole thing, re-built it using my open source stuff like [Easy-Addins-Utils](https://github.com/armhil/easy-addins-utils) so we should be in a way better place.
 
