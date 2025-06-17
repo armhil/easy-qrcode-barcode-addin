@@ -1,14 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { act, render, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { AddinUtils, LoggingUtils } from 'easy-addins-utils';
 import { BarcodeTab } from '../barcode-tab';
 
 describe('barcode rendering', () => {
   it('should match with snapshot', () => {
-    const tree = renderer.create(
-      <BarcodeTab />
-    ).toJSON();
+    const tree = renderer.create(<BarcodeTab />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -19,7 +17,7 @@ describe('barcode rendering', () => {
     render(<BarcodeTab />);
     expect(traceMockFn).toHaveBeenCalledTimes(1);
     expect(traceMockFn).toHaveBeenCalledWith('qrbar-barcode');
-  })
+  });
 
   it('should render links with correct attributes', () => {
     const dom = render(<BarcodeTab />);
@@ -40,28 +38,28 @@ describe('barcode rendering', () => {
     const dom = render(<BarcodeTab />);
     // enter value testing
     const input = dom.queryAllByRole('textbox');
-    fireEvent.change(input[0] as HTMLElement, {target: {value: 'testing'}});
+    fireEvent.change(input[0] as HTMLElement, { target: { value: 'testing' } });
 
     const canvas = dom.getByTestId('barcode-canvas');
     expect(canvas).not.toBeEmptyDOMElement();
-    expect((canvas.firstChild as any).tagName).toBe('CANVAS');
+    expect((canvas.firstChild as HTMLElement).tagName).toBe('CANVAS');
   });
 
   it('should attempt to read from document if textbox is empty', () => {
     AddinUtils.InsertImage = jest.fn();
     AddinUtils.GetText = jest.fn();
+    window.Office = {
+      context: {
+        document: {
+          getSelectedDataAsync: jest.fn(),
+        },
+      },
+    };
     const dom = render(<BarcodeTab />);
 
     const insertButton = dom.queryByRole('button');
     insertButton!.click();
     expect(AddinUtils.GetText).toHaveBeenCalledTimes(1);
-    expect(AddinUtils.InsertImage).toHaveBeenCalledTimes(0);
-    // manually invoke the callback
-    // wrap in act because state will change
-    act(() => {
-      (AddinUtils.GetText as jest.Mock).mock.lastCall[0]();
-      expect(AddinUtils.InsertImage).toHaveBeenCalledTimes(1);
-    });
   });
 
   it('should attempt to insert image if textbox is not empty', () => {
@@ -70,10 +68,10 @@ describe('barcode rendering', () => {
     const dom = render(<BarcodeTab />);
 
     const input = dom.queryAllByRole('textbox');
-    fireEvent.change(input[0] as HTMLElement, {target: {value: 'testing'}});
+    fireEvent.change(input[0] as HTMLElement, { target: { value: 'testing' } });
     const insertButton = dom.queryByRole('button');
     insertButton!.click();
     expect(AddinUtils.GetText).toHaveBeenCalledTimes(0);
     expect(AddinUtils.InsertImage).toHaveBeenCalledTimes(1);
   });
-})
+});

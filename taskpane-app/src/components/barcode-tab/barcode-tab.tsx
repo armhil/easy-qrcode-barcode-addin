@@ -9,19 +9,21 @@ import { useStyles } from './styles';
 // Barcode component
 export function BarcodeTab() {
   React.useEffect(() => {
-      LoggingUtils.Trace('qrbar-barcode'); 
+    LoggingUtils.Trace('qrbar-barcode');
   }, []);
 
   const ref = useRef(null);
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
   const [width, setWidth] = useState(1);
   const [height, setHeight] = useState(100);
   const styles = useStyles();
 
   const insertImageFromCanvas = () => {
     const canvasValue = getCanvasURL();
-    AddinUtils.InsertImage(canvasValue, () => {});
-  }
+    if (canvasValue) {
+      AddinUtils.InsertImage(canvasValue, () => {});
+    }
+  };
 
   // Insert image to Word
   const insertImage = () => {
@@ -30,16 +32,15 @@ export function BarcodeTab() {
         setText(t);
         insertImageFromCanvas();
       });
-    }
-    else {
+    } else {
       insertImageFromCanvas();
     }
   };
 
   const getCanvasURL = () => {
-    const dataValue: any = ref?.current?.['children']?.[0];
+    const dataValue = ref?.current?.['children']?.[0];
     if (dataValue) {
-      let str = dataValue.toDataURL();
+      let str = (dataValue as HTMLCanvasElement).toDataURL();
       str = str.split('data:image/png;base64,')[1];
       return str;
     }
@@ -47,19 +48,53 @@ export function BarcodeTab() {
 
   return (
     <>
-      <div data-testid='input-barcode-text'>
-        <InputWrapper updateText={setText} value={text} label="Barcode text"/>
+      <div data-testid="input-barcode-text">
+        <InputWrapper updateText={setText} value={text} label="Barcode text" />
       </div>
-      <Slider className={styles.slider} label="Width" onChange={setWidth} min={0.5} max={5} step={0.5} defaultValue={width} showValue snapToStep />
-      <Slider className={styles.slider} label="Height" onChange={setHeight} min={50} max={150} step={5} defaultValue={height} showValue snapToStep />
-      { // barcode doesn't deal well with empty text
-        (text && text.length > 0) &&
-        <div ref={ref} data-testid='barcode-canvas'>
-          <Barcode displayValue={false} renderer='canvas' width={width} height={height} value={text}/>
-       </div>
+      <Slider
+        className={styles.slider}
+        label="Width"
+        onChange={setWidth}
+        min={0.5}
+        max={5}
+        step={0.5}
+        defaultValue={width}
+        showValue
+        snapToStep
+      />
+      <Slider
+        className={styles.slider}
+        label="Height"
+        onChange={setHeight}
+        min={50}
+        max={150}
+        step={5}
+        defaultValue={height}
+        showValue
+        snapToStep
+      />
+      {
+        // barcode doesn't deal well with empty text
+        text && text.length > 0 && (
+          <div ref={ref} data-testid="barcode-canvas">
+            <Barcode
+              displayValue={false}
+              renderer="canvas"
+              width={width}
+              height={height}
+              value={text}
+            />
+          </div>
+        )
       }
       <div>
-          <Button data-testid='btn-insert-image' appearance='primary' onClick={insertImage}>Insert Image</Button>
+        <Button
+          data-testid="btn-insert-image"
+          appearance="primary"
+          onClick={insertImage}
+        >
+          Insert Image
+        </Button>
       </div>
     </>
   );

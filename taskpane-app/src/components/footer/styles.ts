@@ -10,9 +10,9 @@ export const useStyles = makeStyles({
   },
   footerIcon: {
     float: 'left',
-    paddingRight: '8px'
+    paddingRight: '8px',
   },
   footerNotification: {
-    fontSize: 'small'
-  }
+    fontSize: 'small',
+  },
 });

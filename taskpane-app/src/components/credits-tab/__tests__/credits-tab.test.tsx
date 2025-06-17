@@ -6,9 +6,7 @@ import { CreditsTab } from '../credits-tab';
 
 describe('credits rendering', () => {
   it('should match with snapshot', () => {
-    const tree = renderer.create(
-      <CreditsTab />
-    ).toJSON();
+    const tree = renderer.create(<CreditsTab />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -19,7 +17,7 @@ describe('credits rendering', () => {
     render(<CreditsTab />);
     expect(traceMockFn).toHaveBeenCalledTimes(1);
     expect(traceMockFn).toHaveBeenCalledWith('qrbar-credits');
-  })
+  });
 
   it('should render links with correct attributes', () => {
     const dom = render(<CreditsTab />);
@@ -27,9 +25,9 @@ describe('credits rendering', () => {
     const links = dom.queryAllByRole('link');
     expect(links).not.toBeUndefined();
     // this is to ensure we can pop the users from Win32 apps
-    links.forEach(t => {
+    links.forEach((t) => {
       expect(t).toHaveAttribute('target', '_blank');
       expect(t).toHaveAttribute('rel', 'noreferrer');
     });
   });
-})
+});

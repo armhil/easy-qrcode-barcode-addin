@@ -1,4 +1,0 @@
-interface Window
-{
-  Office: any;
-}

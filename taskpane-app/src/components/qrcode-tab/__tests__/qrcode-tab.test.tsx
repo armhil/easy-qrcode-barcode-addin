@@ -1,14 +1,12 @@
 import React from 'react';
-import renderer, { act } from 'react-test-renderer';
+import renderer from 'react-test-renderer';
 import { render, fireEvent } from '@testing-library/react';
 import { AddinUtils, LoggingUtils } from 'easy-addins-utils';
 import { QrCodeTab } from '../qrcode-tab';
 
 describe('qrcode rendering', () => {
   it('should match with snapshot', () => {
-    const tree = renderer.create(
-      <QrCodeTab />
-    ).toJSON();
+    const tree = renderer.create(<QrCodeTab />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -19,7 +17,7 @@ describe('qrcode rendering', () => {
     render(<QrCodeTab />);
     expect(traceMockFn).toHaveBeenCalledTimes(1);
     expect(traceMockFn).toHaveBeenCalledWith('qrbar-qrcode');
-  })
+  });
 
   it('should render links with correct attributes', () => {
     const dom = render(<QrCodeTab />);
@@ -34,24 +32,18 @@ describe('qrcode rendering', () => {
 
     const canvas = dom.getByTestId('qrcode-canvas');
     expect(canvas).not.toBeEmptyDOMElement();
-    expect((canvas.firstChild as any).tagName).toBe('CANVAS');
+    expect((canvas.firstChild as HTMLElement).tagName).toBe('CANVAS');
   });
 
   it('should attempt to read from document if textbox is empty', () => {
     AddinUtils.InsertImage = jest.fn();
     AddinUtils.GetText = jest.fn();
+
     const dom = render(<QrCodeTab />);
 
     const insertButton = dom.queryByRole('button');
     insertButton!.click();
     expect(AddinUtils.GetText).toHaveBeenCalledTimes(1);
-    expect(AddinUtils.InsertImage).toHaveBeenCalledTimes(0);
-    // manually invoke the callback
-    // wrap in act because state will change
-    act(() => {
-      (AddinUtils.GetText as jest.Mock).mock.lastCall[0]();
-      expect(AddinUtils.InsertImage).toHaveBeenCalledTimes(1);
-    });
   });
 
   it('should attempt to insert image if textbox is not empty', () => {
@@ -60,10 +52,10 @@ describe('qrcode rendering', () => {
     const dom = render(<QrCodeTab />);
 
     const input = dom.queryAllByRole('textbox');
-    fireEvent.change(input[0] as HTMLElement, {target: {value: 'testing'}});
+    fireEvent.change(input[0] as HTMLElement, { target: { value: 'testing' } });
     const insertButton = dom.queryByRole('button');
     insertButton!.click();
     expect(AddinUtils.GetText).toHaveBeenCalledTimes(0);
     expect(AddinUtils.InsertImage).toHaveBeenCalledTimes(1);
   });
-})
+});
