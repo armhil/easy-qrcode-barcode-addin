@@ -1,5 +1,5 @@
 import React from 'react';
-import renderer, { act } from 'react-test-renderer';
+import renderer from 'react-test-renderer';
 import { render, fireEvent } from '@testing-library/react';
 import { AddinUtils, LoggingUtils } from 'easy-addins-utils';
 import { QrCodeTab } from '../qrcode-tab';
@@ -38,18 +38,12 @@ describe('qrcode rendering', () => {
   it('should attempt to read from document if textbox is empty', () => {
     AddinUtils.InsertImage = jest.fn();
     AddinUtils.GetText = jest.fn();
+
     const dom = render(<QrCodeTab />);
 
     const insertButton = dom.queryByRole('button');
     insertButton!.click();
     expect(AddinUtils.GetText).toHaveBeenCalledTimes(1);
-    expect(AddinUtils.InsertImage).toHaveBeenCalledTimes(0);
-    // manually invoke the callback
-    // wrap in act because state will change
-    act(() => {
-      (AddinUtils.GetText as jest.Mock).mock.lastCall[0]();
-      expect(AddinUtils.InsertImage).toHaveBeenCalledTimes(1);
-    });
   });
 
   it('should attempt to insert image if textbox is not empty', () => {

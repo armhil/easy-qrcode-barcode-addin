@@ -34,7 +34,7 @@ export function GithubFooter() {
         </Popover>
       </div>
       <span className={styles.footerNotification}>
-        Easy QR Code Barcode is open source now!{' '}
+        Easy QR Code Barcode is open source now!
       </span>
       <Link
         data-testid="contribute-github-button"
