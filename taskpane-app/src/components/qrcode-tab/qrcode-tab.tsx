@@ -16,22 +16,26 @@ export function QrCodeTab() {
   const [size, setSize] = useState(125);
   const styles = useStyles();
 
-  const insertImageFromCanvas = () => {
-    const canvasValue = getCanvasURL();
-    if (canvasValue) {
-      AddinUtils.InsertImage(canvasValue, () => {});
+  const insertImageFromCanvas = async () => {
+    try {
+      const canvasValue = getCanvasURL();
+      if (canvasValue) await AddinUtils.InsertImage(canvasValue);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
+      console.error('something went wrong on insert image from canvas.', err);
     }
   };
 
   // Insert image to Word
-  const insertImage = () => {
-    if (!text || text.length === 0) {
-      AddinUtils.GetText((t: string) => {
-        setText(t);
-        insertImageFromCanvas();
-      });
-    } else {
+  const insertImage = async () => {
+    try {
+      if (!text || text.length === 0) {
+        const text = await AddinUtils.GetText();
+        setText(text);
+      }
       insertImageFromCanvas();
+    } catch {
+      console.error('something went wrong on insert image.');
     }
   };
 

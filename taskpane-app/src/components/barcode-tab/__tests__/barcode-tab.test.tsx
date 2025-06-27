@@ -1,5 +1,5 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import renderer, { act } from 'react-test-renderer';
 import { render, fireEvent } from '@testing-library/react';
 import { AddinUtils, LoggingUtils } from 'easy-addins-utils';
 import { BarcodeTab } from '../barcode-tab';
@@ -38,8 +38,9 @@ describe('barcode rendering', () => {
     const dom = render(<BarcodeTab />);
     // enter value testing
     const input = dom.queryAllByRole('textbox');
-    fireEvent.change(input[0] as HTMLElement, { target: { value: 'testing' } });
-
+    act(() => {
+      fireEvent.change(input[0] as HTMLElement, { target: { value: 'testing' } });
+    });
     const canvas = dom.getByTestId('barcode-canvas');
     expect(canvas).not.toBeEmptyDOMElement();
     expect((canvas.firstChild as HTMLElement).tagName).toBe('CANVAS');
@@ -58,7 +59,9 @@ describe('barcode rendering', () => {
     const dom = render(<BarcodeTab />);
 
     const insertButton = dom.queryByRole('button');
-    insertButton!.click();
+    act(() => {
+      insertButton!.click();
+    });
     expect(AddinUtils.GetText).toHaveBeenCalledTimes(1);
   });
 
@@ -68,9 +71,13 @@ describe('barcode rendering', () => {
     const dom = render(<BarcodeTab />);
 
     const input = dom.queryAllByRole('textbox');
-    fireEvent.change(input[0] as HTMLElement, { target: { value: 'testing' } });
+    act(() => {
+      fireEvent.change(input[0] as HTMLElement, { target: { value: 'testing' } });
+    });
     const insertButton = dom.queryByRole('button');
-    insertButton!.click();
+    act(() => {
+      insertButton!.click();
+    });
     expect(AddinUtils.GetText).toHaveBeenCalledTimes(0);
     expect(AddinUtils.InsertImage).toHaveBeenCalledTimes(1);
   });
