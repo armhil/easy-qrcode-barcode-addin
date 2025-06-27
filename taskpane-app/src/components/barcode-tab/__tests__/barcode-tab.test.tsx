@@ -39,7 +39,9 @@ describe('barcode rendering', () => {
     // enter value testing
     const input = dom.queryAllByRole('textbox');
     act(() => {
-      fireEvent.change(input[0] as HTMLElement, { target: { value: 'testing' } });
+      fireEvent.change(input[0] as HTMLElement, {
+        target: { value: 'testing' },
+      });
     });
     const canvas = dom.getByTestId('barcode-canvas');
     expect(canvas).not.toBeEmptyDOMElement();
@@ -72,7 +74,9 @@ describe('barcode rendering', () => {
 
     const input = dom.queryAllByRole('textbox');
     act(() => {
-      fireEvent.change(input[0] as HTMLElement, { target: { value: 'testing' } });
+      fireEvent.change(input[0] as HTMLElement, {
+        target: { value: 'testing' },
+      });
     });
     const insertButton = dom.queryByRole('button');
     act(() => {

@@ -56,7 +56,9 @@ describe('qrcode rendering', () => {
     act(() => {
       const input = dom.queryAllByRole('textbox');
 
-      fireEvent.change(input[0] as HTMLElement, { target: { value: 'testing' } });
+      fireEvent.change(input[0] as HTMLElement, {
+        target: { value: 'testing' },
+      });
       const insertButton = dom.queryByRole('button');
       insertButton!.click();
       expect(AddinUtils.GetText).toHaveBeenCalledTimes(0);
