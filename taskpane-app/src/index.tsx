@@ -15,8 +15,8 @@ const renderApp = async () => {
         <App />
       </FluentProvider>
     );
-  } catch {
-    console.log('soemthing went wrong');
+  } catch (err){
+    console.error(err);
     return 'something went wrong';
   }
 };
