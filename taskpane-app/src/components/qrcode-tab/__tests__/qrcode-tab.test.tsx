@@ -66,7 +66,7 @@ describe('qrcode rendering', () => {
     });
   });
 
-    it('should attempt to read from document if textbox is empty', async () => {
+  it('should attempt to read from document if textbox is empty', async () => {
     AddinUtils.InsertImage = jest.fn();
     AddinUtils.GetText = jest.fn().mockResolvedValue('mocked text');
 
@@ -132,7 +132,10 @@ describe('qrcode rendering', () => {
     });
 
     expect(AddinUtils.InsertImage).toHaveBeenCalledTimes(1);
-    expect(errorSpy).toHaveBeenCalledWith('something went wrong on insert image from canvas.', new Error('fail'));
+    expect(errorSpy).toHaveBeenCalledWith(
+      'something went wrong on insert image from canvas.',
+      new Error('fail')
+    );
     errorSpy.mockRestore();
   });
 
@@ -149,7 +152,10 @@ describe('qrcode rendering', () => {
     });
 
     expect(AddinUtils.GetText).toHaveBeenCalledTimes(1);
-    expect(errorSpy).toHaveBeenCalledWith('something went wrong on insert image.', new Error('fail'));
+    expect(errorSpy).toHaveBeenCalledWith(
+      'something went wrong on insert image.',
+      new Error('fail')
+    );
     errorSpy.mockRestore();
   });
 });

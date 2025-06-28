@@ -104,7 +104,10 @@ describe('barcode rendering', () => {
     });
 
     expect(AddinUtils.InsertImage).toHaveBeenCalledTimes(1);
-    expect(errorSpy).toHaveBeenCalledWith('something went wrong on insert image from canvas.', new Error('fail'));
+    expect(errorSpy).toHaveBeenCalledWith(
+      'something went wrong on insert image from canvas.',
+      new Error('fail')
+    );
     errorSpy.mockRestore();
   });
 
@@ -121,7 +124,10 @@ describe('barcode rendering', () => {
     });
 
     expect(AddinUtils.GetText).toHaveBeenCalledTimes(1);
-    expect(errorSpy).toHaveBeenCalledWith('something went wrong on insert image.', new Error('fail'));
+    expect(errorSpy).toHaveBeenCalledWith(
+      'something went wrong on insert image.',
+      new Error('fail')
+    );
     errorSpy.mockRestore();
   });
 });
