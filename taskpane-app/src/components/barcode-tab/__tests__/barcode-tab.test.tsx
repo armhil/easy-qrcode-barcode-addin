@@ -51,7 +51,8 @@ describe('barcode rendering', () => {
   it('should attempt to read from document if textbox is empty', () => {
     AddinUtils.InsertImage = jest.fn();
     AddinUtils.GetText = jest.fn();
-    window.Office = {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).Office = {
       context: {
         document: {
           getSelectedDataAsync: jest.fn(),
