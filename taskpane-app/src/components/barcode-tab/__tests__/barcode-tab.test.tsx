@@ -86,4 +86,42 @@ describe('barcode rendering', () => {
     expect(AddinUtils.GetText).toHaveBeenCalledTimes(0);
     expect(AddinUtils.InsertImage).toHaveBeenCalledTimes(1);
   });
+
+  it('should handle promise rejection when inserting image', async () => {
+    AddinUtils.InsertImage = jest.fn().mockRejectedValue(new Error('fail'));
+    AddinUtils.GetText = jest.fn();
+    const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+    const dom = render(<BarcodeTab />);
+
+    await act(async () => {
+      const input = dom.queryAllByRole('textbox');
+      fireEvent.change(input[0] as HTMLElement, {
+        target: { value: 'testing' },
+      });
+      const insertButton = dom.queryByRole('button');
+      insertButton!.click();
+    });
+
+    expect(AddinUtils.InsertImage).toHaveBeenCalledTimes(1);
+    expect(errorSpy).toHaveBeenCalledWith('something went wrong on insert image from canvas.', new Error('fail'));
+    errorSpy.mockRestore();
+  });
+
+  it('should handle promise rejection when reading from document', async () => {
+    AddinUtils.InsertImage = jest.fn();
+    AddinUtils.GetText = jest.fn().mockRejectedValue(new Error('fail'));
+    const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+    const dom = render(<BarcodeTab />);
+
+    await act(async () => {
+      const insertButton = dom.queryByRole('button');
+      insertButton!.click();
+    });
+
+    expect(AddinUtils.GetText).toHaveBeenCalledTimes(1);
+    expect(errorSpy).toHaveBeenCalledWith('something went wrong on insert image.', new Error('fail'));
+    errorSpy.mockRestore();
+  });
 });
