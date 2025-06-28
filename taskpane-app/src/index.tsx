@@ -6,7 +6,8 @@ import App from './app';
 import './index.css';
 
 const domNode = document.getElementById('root');
-const root = createRoot(domNode!);
+if (!domNode) throw new Error('Root element not found');
+const root = createRoot(domNode);
 const renderApp = async () => {
   try {
     await AddinUtils.Initialize();
