@@ -22,8 +22,7 @@ export function BarcodeTab() {
     try {
       const canvasValue = getCanvasURL();
       if (canvasValue) await AddinUtils.InsertImage(canvasValue);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (err: any) {
+    } catch (err) {
       console.error('something went wrong on insert image from canvas.', err);
     }
   };
@@ -36,8 +35,8 @@ export function BarcodeTab() {
         setText(text);
       }
       insertImageFromCanvas();
-    } catch {
-      console.error('something went wrong on insert image.');
+    } catch (err) {
+      console.error('something went wrong on insert image.', err);
     }
   };
 
