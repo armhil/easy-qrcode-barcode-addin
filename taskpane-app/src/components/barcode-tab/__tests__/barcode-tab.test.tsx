@@ -5,6 +5,22 @@ import { AddinUtils, LoggingUtils } from 'easy-addins-utils';
 import { BarcodeTab } from '../barcode-tab';
 
 describe('barcode rendering', () => {
+  let rafSpy: jest.SpyInstance<number, [FrameRequestCallback]>;
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+    rafSpy = jest
+      .spyOn(window, 'requestAnimationFrame')
+      .mockImplementation((cb: FrameRequestCallback) => {
+        cb(0);
+        return 0;
+      });
+  });
+
+  afterEach(() => {
+    rafSpy?.mockRestore();
+  });
+
   it('should match with snapshot', () => {
     const tree = renderer.create(<BarcodeTab />).toJSON();
     expect(tree).toMatchSnapshot();
@@ -48,9 +64,9 @@ describe('barcode rendering', () => {
     expect((canvas.firstChild as HTMLElement).tagName).toBe('CANVAS');
   });
 
-  it('should attempt to read from document if textbox is empty', () => {
-    AddinUtils.InsertImage = jest.fn();
-    AddinUtils.GetText = jest.fn();
+  it('should attempt to read from document if textbox is empty', async () => {
+    AddinUtils.InsertImage = jest.fn().mockResolvedValue(undefined);
+    AddinUtils.GetText = jest.fn().mockResolvedValue('from-doc');
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (window as any).Office = {
       context: {
@@ -62,25 +78,26 @@ describe('barcode rendering', () => {
     const dom = render(<BarcodeTab />);
 
     const insertButton = dom.queryByRole('button');
-    act(() => {
+    await act(async () => {
       insertButton!.click();
     });
     expect(AddinUtils.GetText).toHaveBeenCalledTimes(1);
+    expect(AddinUtils.InsertImage).toHaveBeenCalledTimes(1);
   });
 
-  it('should attempt to insert image if textbox is not empty', () => {
-    AddinUtils.InsertImage = jest.fn();
+  it('should attempt to insert image if textbox is not empty', async () => {
+    AddinUtils.InsertImage = jest.fn().mockResolvedValue(undefined);
     AddinUtils.GetText = jest.fn();
     const dom = render(<BarcodeTab />);
 
     const input = dom.queryAllByRole('textbox');
-    act(() => {
+    await act(async () => {
       fireEvent.change(input[0] as HTMLElement, {
         target: { value: 'testing' },
       });
     });
     const insertButton = dom.queryByRole('button');
-    act(() => {
+    await act(async () => {
       insertButton!.click();
     });
     expect(AddinUtils.GetText).toHaveBeenCalledTimes(0);

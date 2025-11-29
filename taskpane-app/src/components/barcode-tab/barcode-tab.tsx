@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { Slider } from '@fluentui/react';
 import { Button } from '@fluentui/react-components';
 import { AddinUtils, LoggingUtils } from 'easy-addins-utils';
@@ -6,21 +6,41 @@ import Barcode from 'react-barcode';
 import { InputWrapper } from '../input';
 import { useStyles } from './styles';
 
+type BarcodeTabProps = {
+  styles: ReturnType<typeof useStyles>;
+};
+
+type BarcodeTabState = {
+  text: string;
+  width: number;
+  height: number;
+};
+
 // Barcode component
-export function BarcodeTab() {
-  React.useEffect(() => {
+class BarcodeTabComponent extends React.Component<
+  BarcodeTabProps,
+  BarcodeTabState
+> {
+  private ref = React.createRef<HTMLDivElement>();
+
+  state: BarcodeTabState = {
+    text: '',
+    width: 1,
+    height: 100,
+  };
+
+  componentDidMount(): void {
     LoggingUtils.Trace('qrbar-barcode');
-  }, []);
+  }
 
-  const ref = useRef(null);
-  const [text, setText] = useState('');
-  const [width, setWidth] = useState(1);
-  const [height, setHeight] = useState(100);
-  const styles = useStyles();
+  private triggerInsertAfterRender = () => {
+    // wait for the next frame so the barcode canvas reflects the latest state
+    window.requestAnimationFrame(() => this.insertImageFromCanvas());
+  };
 
-  const insertImageFromCanvas = async () => {
+  insertImageFromCanvas = async () => {
     try {
-      const canvasValue = getCanvasURL();
+      const canvasValue = this.getCanvasURL();
       if (canvasValue) await AddinUtils.InsertImage(canvasValue);
     } catch (err) {
       console.error('something went wrong on insert image from canvas.', err);
@@ -28,20 +48,22 @@ export function BarcodeTab() {
   };
 
   // Insert image to Word
-  const insertImage = async () => {
+  insertImage = async () => {
     try {
-      if (!text || text.length === 0) {
+      if (!this.state.text || this.state.text.length === 0) {
         const text = await AddinUtils.GetText();
-        setText(text);
+        this.setState({ text }, this.triggerInsertAfterRender);
+        return;
+      } else {
+        this.triggerInsertAfterRender();
       }
-      insertImageFromCanvas();
     } catch (err) {
       console.error('something went wrong on insert image.', err);
     }
   };
 
-  const getCanvasURL = () => {
-    const dataValue = ref?.current?.['children']?.[0];
+  getCanvasURL = () => {
+    const dataValue = this.ref?.current?.['children']?.[0];
     if (dataValue) {
       let str = (dataValue as HTMLCanvasElement).toDataURL();
       str = str.split('data:image/png;base64,')[1];
@@ -49,56 +71,69 @@ export function BarcodeTab() {
     }
   };
 
-  return (
-    <>
-      <div data-testid="input-barcode-text">
-        <InputWrapper updateText={setText} value={text} label="Barcode text" />
-      </div>
-      <Slider
-        className={styles.slider}
-        label="Width"
-        onChange={setWidth}
-        min={0.5}
-        max={5}
-        step={0.5}
-        defaultValue={width}
-        showValue
-        snapToStep
-      />
-      <Slider
-        className={styles.slider}
-        label="Height"
-        onChange={setHeight}
-        min={50}
-        max={150}
-        step={5}
-        defaultValue={height}
-        showValue
-        snapToStep
-      />
-      {
-        // barcode doesn't deal well with empty text
-        text && text.length > 0 && (
-          <div ref={ref} data-testid="barcode-canvas">
-            <Barcode
-              displayValue={false}
-              renderer="canvas"
-              width={width}
-              height={height}
-              value={text}
-            />
-          </div>
-        )
-      }
-      <div>
-        <Button
-          data-testid="btn-insert-image"
-          appearance="primary"
-          onClick={insertImage}
-        >
-          Insert Image
-        </Button>
-      </div>
-    </>
-  );
+  render() {
+    const { text, width, height } = this.state;
+
+    return (
+      <>
+        <div data-testid="input-barcode-text">
+          <InputWrapper
+            updateText={(val) => this.setState({ text: val })}
+            value={text}
+            label="Barcode text"
+          />
+        </div>
+        <Slider
+          className={this.props.styles.slider}
+          label="Width"
+          onChange={(val) => this.setState({ width: val })}
+          min={0.5}
+          max={5}
+          step={0.5}
+          defaultValue={width}
+          showValue
+          snapToStep
+        />
+        <Slider
+          className={this.props.styles.slider}
+          label="Height"
+          onChange={(val) => this.setState({ height: val })}
+          min={50}
+          max={150}
+          step={5}
+          defaultValue={height}
+          showValue
+          snapToStep
+        />
+        {
+          // barcode doesn't deal well with empty text
+          text && text.length > 0 && (
+            <div ref={this.ref} data-testid="barcode-canvas">
+              <Barcode
+                displayValue={false}
+                renderer="canvas"
+                width={width}
+                height={height}
+                value={text}
+              />
+            </div>
+          )
+        }
+        <div>
+          <Button
+            data-testid="btn-insert-image"
+            appearance="primary"
+            onClick={this.insertImage}
+          >
+            Insert Image
+          </Button>
+        </div>
+      </>
+    );
+  }
+}
+
+export function BarcodeTab() {
+  const styles = useStyles();
+  return <BarcodeTabComponent styles={styles} />;
 }
