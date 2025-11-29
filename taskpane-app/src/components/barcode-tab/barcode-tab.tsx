@@ -17,7 +17,10 @@ type BarcodeTabState = {
 };
 
 // Barcode component
-class BarcodeTabComponent extends React.Component<BarcodeTabProps, BarcodeTabState> {
+class BarcodeTabComponent extends React.Component<
+  BarcodeTabProps,
+  BarcodeTabState
+> {
   private ref = React.createRef<HTMLDivElement>();
 
   state: BarcodeTabState = {

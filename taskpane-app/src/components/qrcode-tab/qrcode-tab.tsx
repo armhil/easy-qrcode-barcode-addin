@@ -15,7 +15,10 @@ type QrCodeTabState = {
   size: number;
 };
 
-class QrCodeTabComponent extends React.Component<QrCodeTabProps, QrCodeTabState> {
+class QrCodeTabComponent extends React.Component<
+  QrCodeTabProps,
+  QrCodeTabState
+> {
   private ref = React.createRef<HTMLDivElement>();
 
   state: QrCodeTabState = {
