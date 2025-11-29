@@ -1,24 +1,40 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { Button } from '@fluentui/react-components';
 import { AddinUtils, LoggingUtils } from 'easy-addins-utils';
 import QRCode from 'qrcode.react';
 import { InputWrapper } from '../input';
 import { Slider } from '@fluentui/react';
 import { useStyles } from './styles';
-// Qr code route
-export function QrCodeTab() {
-  React.useEffect(() => {
+
+type QrCodeTabProps = {
+  styles: ReturnType<typeof useStyles>;
+};
+
+type QrCodeTabState = {
+  text: string;
+  size: number;
+};
+
+class QrCodeTabComponent extends React.Component<QrCodeTabProps, QrCodeTabState> {
+  private ref = React.createRef<HTMLDivElement>();
+
+  state: QrCodeTabState = {
+    text: '',
+    size: 125,
+  };
+
+  componentDidMount(): void {
     LoggingUtils.Trace('qrbar-qrcode');
-  }, []);
+  }
 
-  const ref = useRef(null);
-  const [text, setText] = useState('');
-  const [size, setSize] = useState(125);
-  const styles = useStyles();
+  private triggerInsertAfterRender = () => {
+    // wait for the next frame so the QR code canvas reflects the latest state
+    window.requestAnimationFrame(() => this.insertImageFromCanvas());
+  };
 
-  const insertImageFromCanvas = async () => {
+  insertImageFromCanvas = async () => {
     try {
-      const canvasValue = getCanvasURL();
+      const canvasValue = this.getCanvasURL();
       if (canvasValue) await AddinUtils.InsertImage(canvasValue);
     } catch (err) {
       console.error('something went wrong on insert image from canvas.', err);
@@ -26,20 +42,22 @@ export function QrCodeTab() {
   };
 
   // Insert image to Word
-  const insertImage = async () => {
+  insertImage = async () => {
     try {
-      if (!text || text.length === 0) {
+      if (!this.state.text || this.state.text.length === 0) {
         const text = await AddinUtils.GetText();
-        setText(text);
+        this.setState({ text }, this.triggerInsertAfterRender);
+        return;
+      } else {
+        this.triggerInsertAfterRender();
       }
-      insertImageFromCanvas();
     } catch (err) {
       console.error('something went wrong on insert image.', err);
     }
   };
 
-  const getCanvasURL = () => {
-    const dataValue = ref?.current?.['children']?.[0];
+  getCanvasURL = () => {
+    const dataValue = this.ref?.current?.['children']?.[0];
     if (dataValue) {
       let str = (dataValue as HTMLCanvasElement).toDataURL();
       str = str.split('data:image/png;base64,')[1];
@@ -47,28 +65,42 @@ export function QrCodeTab() {
     }
   };
 
-  return (
-    <>
-      <InputWrapper updateText={setText} value={text} label="QR code text" />
-      <Slider
-        className={styles.slider}
-        label="Size"
-        onChange={(v: number) => setSize(v)}
-        min={50}
-        max={300}
-        step={5}
-        defaultValue={125}
-        showValue
-        snapToStep
-      />
-      <div ref={ref} data-testid="qrcode-canvas">
-        <QRCode size={size} value={text} />
-      </div>
-      <div className={styles.button}>
-        <Button appearance="primary" onClick={insertImage}>
-          Insert Image
-        </Button>
-      </div>
-    </>
-  );
+  render() {
+    const { text, size } = this.state;
+
+    return (
+      <>
+        <InputWrapper
+          updateText={(val) => this.setState({ text: val })}
+          value={text}
+          label="QR code text"
+        />
+        <Slider
+          className={this.props.styles.slider}
+          label="Size"
+          onChange={(v: number) => this.setState({ size: v })}
+          min={50}
+          max={300}
+          step={5}
+          defaultValue={size}
+          showValue
+          snapToStep
+        />
+        <div ref={this.ref} data-testid="qrcode-canvas">
+          <QRCode size={size} value={text} />
+        </div>
+        <div className={this.props.styles.button}>
+          <Button appearance="primary" onClick={this.insertImage}>
+            Insert Image
+          </Button>
+        </div>
+      </>
+    );
+  }
+}
+
+// Qr code route
+export function QrCodeTab() {
+  const styles = useStyles();
+  return <QrCodeTabComponent styles={styles} />;
 }
