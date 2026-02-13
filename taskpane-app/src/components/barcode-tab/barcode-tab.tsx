@@ -65,7 +65,18 @@ class BarcodeTabComponent extends React.Component<
   getCanvasURL = () => {
     const dataValue = this.ref?.current?.['children']?.[0];
     if (dataValue) {
-      let str = (dataValue as HTMLCanvasElement).toDataURL();
+      const sourceCanvas = dataValue as HTMLCanvasElement;
+      const canvasWithBorder = document.createElement('canvas');
+      canvasWithBorder.width = sourceCanvas.width + 2;
+      canvasWithBorder.height = sourceCanvas.height + 2;
+      const context = canvasWithBorder.getContext('2d');
+      if (!context) return;
+
+      context.fillStyle = '#ffffff';
+      context.fillRect(0, 0, canvasWithBorder.width, canvasWithBorder.height);
+      context.drawImage(sourceCanvas, 1, 1);
+
+      let str = canvasWithBorder.toDataURL('image/png');
       str = str.split('data:image/png;base64,')[1];
       return str;
     }
